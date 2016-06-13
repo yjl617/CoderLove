@@ -1,0 +1,10 @@
+环境要求：php3.4以上   确认空间支持伪静态
+
+1、把压缩包内的文件上传到网站空间
+2、登陆phpmyadmin导入数据库lagou20141126.sql
+3、打开/Application/Common/Conf/config.php文件修改数据库配置信息
+
+
+
+后台地址  你的网址/Admin/Link/index.html
+用户名admin  密码123123
