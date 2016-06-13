@@ -1,0 +1,64 @@
+<div id="header">
+    <div class="wrapper">
+        <a href="{:U('Home/Index/index')}" class="logo">
+            <img src="__PUBLIC__/HomeStyle/images/logo.png" width="229" height="43" alt="拉勾招聘-专注互联网招聘" />
+        </a>
+        <?php if (!$_COOKIE['state']) :?>
+        <!-- 未登录头部 -->
+        <ul class="reset" id="navheader">
+            <li <if condition="[nav] eq 'index'">class="current"</if>><a href="{:U('Home/Index/index')}">首页</a></li>
+            <li <if condition="[nav] eq 'company'">class="current"</if>><a href="{:U('Home/Index/companylist')}" >公司</a></li>
+            <li <if condition="[nav] eq 'resume'">class="current"</if>><a href="{:U('Resume/index')}" rel="nofollow">我的简历</a></li>
+            <li <if condition="[nav] eq 'job'">class="current"</if>><a href="{:U('Home/CompanyJob/create')}" rel="nofollow">发布职位</a></li>
+        </ul>
+        <ul class="loginTop">
+            <li><a href="{:U('User/login')}" rel="nofollow">登录</a></li> 
+            <li>|</li>
+            <li><a href="{:U('User/register')}" rel="nofollow">注册</a></li>
+        </ul>
+        <?php endif ;?>
+
+        <?php if ($_COOKIE['state'] == 1) :?>
+        <!-- 个人用户头部 -->
+         <ul class="reset" id="navheader">
+            <li <if condition="[nav] eq 'index'">class="current"</if>><a href="{:U('Home/Index/index')}">首页</a></li>
+            <li <if condition="[nav] eq 'company'">class="current"</if>><a href="{:U('Home/Index/companylist')}" >公司</a></li>
+            <li <if condition="[nav] eq 'resume'">class="current"</if>><a href="{:U('Resume/index')}" rel="nofollow">我的简历</a></li>
+        </ul>
+        <dl class="collapsible_menu">
+            <dt>
+                <span><?php echo $_SESSION['user']['username']?>&nbsp;</span>
+                <span class="red dn" id="noticeDot-0"></span>
+                <i></i>
+            </dt>
+            <dd><a href="{:U('CollectionJob/index')}">我收藏的职位</a></dd>
+            <dd class="btm"><a href="###">我的订阅</a></dd>
+            <dd><a href="{:U('Home/CompanyJob/create')}">我要招人</a></dd>
+            <dd><a href="###">帐号设置</a></dd>
+            <dd class="logout"><a rel="nofollow" href="{:U('User/logout')}">退出</a></dd>
+        </dl>
+        <?php endif ;?>
+        <?php if ($_COOKIE['state'] == 2) :?>
+        <!-- 公司用户头部 -->
+         <ul class="reset" id="navheader">
+            <li <if condition="[nav] eq 'index'">class="current"</if>><a href="{:U('Home/Index/index')}">首页</a></li>
+            <li <if condition="[nav] eq 'company'">class="current"</if>><a href="{:U('Home/Index/companylist')}" >公司</a></li>
+            <li <if condition="[nav] eq 'handle'">class="current"</if>><a href="{:U('Home/ResumeHandle/unhandle')}" rel="nofollow">简历管理</a></li>
+            <li <if condition="[nav] eq 'job'">class="current"</if>><a href="{:U('Home/CompanyJob/create')}" rel="nofollow">发布职位</a></li>
+        </ul>
+        <dl class="collapsible_menu">
+            <dt>
+                <span><?php echo $_SESSION['user']['username']?>&nbsp;</span>
+                <span class="red dn" id="noticeDot-0"></span>
+                <i></i>
+            </dt>
+            <dd><a rel="nofollow" href="{:U('Home/CompanyJob/positions')}">我发布的职位</a></dd>
+            <dd><a href="{:U('Home/ResumeHandle/unhandle')}">我收到的简历</a></dd>
+            <dd class="btm"><a href="{:U('Home/Company/index')}">我公司的主页</a></dd>
+            <dd><a href="{:U('Home/Resume/index')}">我要找工作</a></dd>
+            <dd><a href="{:U('Home/Company/updatePwd')}">帐号设置</a></dd>
+            <dd class="logout"><a rel="nofollow" href="{:U('User/logout')}">退出</a></dd>
+        </dl>
+        <?php endif ;?>
+    </div>
+</div>

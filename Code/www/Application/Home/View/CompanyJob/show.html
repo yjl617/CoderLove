@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>简历预览-我的简历-拉勾网-最专业的互联网招聘平台</title>
+<meta name="baidu-site-verification" content="QIQ6KC1oZ6">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/HomeStyle/css/style.css">
+</head>
+
+<body>
+  	<div id="previewWrapper">
+        <div class="preview_header">
+            <h1 title="{$data['name']}的简历">{$data['name']}的简历</h1>
+            <a href="#downloadOnlineResume" class="inline cboxElement" title="下载简历">下载该简历</a>
+        </div><!--end .preview_header-->
+
+        <div class="preview_content">
+            <div id="basicInfo" class="profile_box {$data['first']}">
+                <h2>基本信息</h2>
+                <div class="basicShow">
+                   <span>
+                   		{$data['name']} |{$data['sex']} |{$data['education']} |{$data['work_year']}<br>{$data['phone']} | {$data['email']}<br>{$data['now_state']}
+            	   </span>
+           			<div class="m_portrait">
+                    	<div></div>
+                    	<img src="/Uploads/User/image/{$data['image']}" alt="{$data['name']}" height="120" width="120">
+                    </div>
+                </div><!--end .basicShow-->
+            </div><!--end #basicInfo-->
+			
+			<div id="expectJob" class="profile_box {$data['second']}">
+                <h2>期望工作</h2>
+                <div class="expectShow">
+                	{$data['hope_city']}，{$data['hope_job']}，月薪{$data['hope_salary']}
+                </div><!--end .expectShow-->
+	        </div><!--end #expectJob-->
+						
+			<div id="workExperience" class="profile_box {$data['third']}">
+                <h2>工作经历</h2>
+                <div class="experienceShow">
+                    <ul class="wlist clearfix">
+           				<foreach name="data['work_history_value']" item="vo" >
+                  	    <li class="clear">
+        					<span class="c9">{$vo.begin_yeartime}.{$vo.begin_monthtime}-{$vo.end_yeartime}.{$vo.end_monthtime}</span>
+           					<div>
+           						<img src="__PUBLIC__/HomeStyle/images/logo_default.png" alt="xiaomi1" height="56" width="56">
+           						<h3>{$vo.job}</h3>
+           						<h4>{$vo.company}</h4>
+           					</div>
+           				</li>           					
+           				</foreach>
+           			</ul>
+                </div><!--end .experienceShow-->
+	        </div><!--end #workExperience-->
+			
+			<div id="projectExperience" class="profile_box {$data['fouth']}">
+                <h2>项目经验</h2>
+                <div class="projectShow">
+                    <ul class="plist clearfix">
+        				<foreach name="data['res_project_value']" item="vo" >
+	        				<li class="noborder">
+	        					<div class="projectList">
+	            					<div class="f16 mb10">{$vo.name}，{$vo.job}
+	            						<span class="c9">（{$vo.begin_yeartime}.{$vo.begin_monthtime}-{$vo.end_yeartime}.{$vo.end_monthtime}）</span>
+	            					}
+	            					</div>
+	            					<div class="dl1">
+	            						{$vo.description}
+	            					</div>
+	            				</div>
+	        				</li>       					
+        				</foreach>
+            		</ul>
+                </div><!--end .projectShow-->
+	        </div><!--end #projectExperience-->
+						
+			<div id="educationalBackground" class="profile_box {$data['five']}">
+	            <h2>教育背景</h2>
+	                <div class="educationalShow">
+	                    <ul class="elist clearfix">
+            				<foreach name="data['res_education_value']" item="vo" >
+	                  	    <li class="clear">
+            				    <span class="c9">{$vo.begin_time}-{$vo.end_time}</span>
+            					<div>
+            						<h3>{$vo.school}</h3>
+            						<h4>{$vo.professional}，{$vo.education}</h4>
+            					</div>
+            				</li>           				
+            				</foreach>
+            			</ul>
+	                </div><!--end .educationalShow-->
+	            </div><!--end #educationalBackground-->
+				<div id="worksShow" class="profile_box {$data['sixty']}">
+	                <h2>作品展示</h2>
+	                <div class="workShow">
+	                    <ul class="slist clearfix">
+            				<foreach name="data['res_show_works_value']" item="vo" >
+	            				<li class="noborder">
+	            				    <div class="workList c7">
+		            					<div class="f16">
+		            						网址：<a href="http://{$vo.link}/" target="_blank">{$vo.link}</a>
+		            					</div>
+		            					<p>{$vo.description}</p>
+		            				</div>
+	            				</li>           					
+            				</foreach>
+            			</ul>
+	                </div><!--end .workShow-->
+	            </div><!--end #worksShow-->
+			        </div><!--end .preview_content-->
+  	</div><!--end #previewWrapper-->
+</body>
+</html>

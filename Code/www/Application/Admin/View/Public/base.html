@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title><block name="title">运营管理平台 - 拉勾网</block></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- 必须的css -->
+		<link href="__STYLE__/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="__STYLE__/css/bootstrap-responsive.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="__STYLE__/css/font-awesome.min.css" />
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="__STYLE__/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+		<link rel="stylesheet" href="__STYLE__/css/ace-fonts.css" />
+		<link rel="stylesheet" href="__STYLE__/css/jquery-ui-1.10.3.full.min.css" />
+		<link rel="stylesheet" href="__STYLE__/css/ace.min.css" />
+		<link rel="stylesheet" href="__STYLE__/css/ace-responsive.min.css" />
+		<link rel="stylesheet" href="__STYLE__/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="__STYLE__/css/lagou.admin.css" />
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="__STYLE__/css/ace-ie.min.css" />
+		<![endif]-->
+        <link rel="stylesheet" href="__STYLE__/css/bootstrap-timepicker.css" />
+        <link rel="stylesheet" href="__STYLE__/css/datepicker.css" />
+        <link rel="stylesheet" href="__STYLE__/css/lagou.global.css" />
+		<!-- /必须的css -->
+		{// 不同页面单独需要的css}
+		<block name="css"></block>
+		<script src="__STYLE__/js/ace-extra.min.js"></script>
+	</head>
+
+	<body>
+		<!-- 头部 -->
+		<include file="Public/header" />
+		<!-- /头部 -->
+
+		<div class="main-container container-fluid">
+			<a class="menu-toggler" id="menu-toggler" href="#">
+				<span class="menu-text"></span>
+			</a>
+
+			<!-- 左侧菜单 -->
+			<block name="sidebar">
+				<include file="Public/sidebar"/>
+			</block>
+			<!-- /左侧菜单 -->
+
+			<div class="main-content">
+				<!-- 面包屑导航 -->
+				<div class="breadcrumbs" id="breadcrumbs">
+					<ul class="breadcrumb">
+						<li>
+							<i class="icon-home home-icon"></i>
+							<a href="{:U('index/index')}">首页</a>
+							<span class="divider">
+							<i class="icon-angle-right arrow-icon"></i>
+							</span>
+						</li>
+						<block name="breadcrumb">
+						<li class="active">最终页</li>
+						</block>
+					</ul>
+				</div>
+				<!-- /面包屑导航 -->
+
+				<div class="page-content">
+					<block name="main"></block>
+				</div><!--/.page-content-->
+
+				<!-- 右侧悬浮的设置按钮,去掉好像会引起js报错 -->
+				<div class="ace-settings-container hide" id="ace-settings-container">
+					<div class="btn btn-app btn-mini btn-warning ace-settings-btn" id="ace-settings-btn">
+						<i class="icon-cog bigger-150"></i>
+					</div>
+
+					<div class="ace-settings-box" id="ace-settings-box">
+						<div>
+							<div class="pull-left">
+								<select id="skin-colorpicker" class="hide">
+									<option data-skin="default" value="#438EB9">#438EB9</option>
+									<option data-skin="skin-1" value="#222A2D">#222A2D</option>
+									<option data-skin="skin-2" value="#C6487E">#C6487E</option>
+									<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+								</select>
+							</div>
+							<span>&nbsp; Choose Skin</span>
+						</div>
+
+						<div>
+							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar" />
+							<label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
+						</div>
+
+						<div>
+							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-sidebar" />
+							<label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
+						</div>
+
+						<div>
+							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-breadcrumbs" />
+							<label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
+						</div>
+
+						<div>
+							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" />
+							<label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
+						</div>
+					</div>
+				</div>
+				<!-- /右侧悬浮的设置按钮,去掉好像会引起js报错 -->
+			</div>
+		</div>
+
+		<!-- 回到顶部 -->
+		<a href="###" id="btn-scroll-up" class="btn-scroll-up btn btn-small btn-inverse">
+			<i class="icon-double-angle-up icon-only bigger-110"></i>
+		</a>
+		<!-- /回到顶部 -->
+
+		<!-- 操作后提示框 -->
+		<div id="lg-alert" class="hide" style="margin-bottom:-1.5em;"></div>
+		<!--modal表单弹出框-->
+		<form id="lg-form" class="modal fade hide form-horizontal" method="post" tabindex="-1" enctype="multipart/form-data" onsubmit="return false;"></form>
+
+		<!-- 基础js部分 -->
+		<script src='__STYLE__/js/jquery-1.10.2.min.js'></script>
+		<script src='__STYLE__/js/jquery.mobile.custom.min.js'></script>
+		
+		<script src="__STYLE__/js/jquery-ui-1.10.3.full.min.js"></script>
+		<script src="__STYLE__/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="__STYLE__/js/bootstrap.min.js"></script>
+		<script src="__STYLE__/js/ace-elements.min.js"></script>
+		<script src="__STYLE__/js/ace.min.js"></script>
+		
+		<script src="__STYLE__/js/jquery.dataTables.min.js"></script>
+		<script src="__STYLE__/js/jquery.dataTables.bootstrap.js"></script>
+		<script src="__STYLE__/lagou/lagou.global.js"></script>
+		<script src="__STYLE__/js/jquery.inputlimiter.1.3.1.min.js"></script>
+
+		<!-- /基础js部分 -->
+		<script type="text/javascript">
+		jQuery(function($){
+			try{
+				ace.settings.navbar_fixed(true);
+				ace.settings.sidebar_fixed(true);
+				ace.settings.breadcrumbs_fixed(true);
+			}catch(e){}
+			
+			$('[data-rel=tooltip]').tooltip();
+			$('[data-rel=popover]').popover({html:true});
+
+		});	
+		</script>
+		
+
+		{// 扩展js}
+		<block name="js"></block>
+	</body>
+</html>

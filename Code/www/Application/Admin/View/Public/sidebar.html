@@ -1,0 +1,105 @@
+<div class="sidebar" id="sidebar">
+	<ul class="nav nav-list">
+		<li <if condition="[nav] eq 'index'">class="active open"</if>>
+			<a href="{:U('admin/index/index')}">
+				<i class="icon-home"></i>
+				<span class="menu-text"> 控制台 </span>
+			</a>
+		</li>
+
+		<li <if condition="[nav] eq 'user'">class="active open"</if>>
+			<a href="javascript:;" class="dropdown-toggle">
+				<i class="icon-group"></i>
+				<span class="menu-text">用户管理</span>
+				<b class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
+				<li>
+				<a href={:U('Admin/User/index')}>
+						<i class="icon-double-angle-right"></i>
+						会员列表
+					</a>
+				</li>
+			</ul>
+		</li>
+
+		<li <if condition="[nav] eq 'company'">class="active open"</if>>
+			<a href="javascript:;" class="dropdown-toggle">
+				<i class="icon-envelope-alt"></i>
+				<span class="menu-text">公司信息管理</span>
+				<b class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
+				<li <if condition="[ac] eq 'xxx'">class="active open"</if>>
+					<a href="{:U('Admin/Company/index')}">
+						<i class="icon-double-angle-right"></i>
+						公司信息列表
+					</a>
+				</li>
+				<li <if condition="[ac] eq 'xxx'">class="active open"</if>>
+					<a href="{:U('Admin/Company/apply')}">
+						<i class="icon-double-angle-right"></i>
+						申请认证公司列表
+					</a>
+				</li>
+			</ul>
+		</li>
+
+		<li <if condition="[nav] eq 'type'">class="active open"</if>>
+			<a href="javascript:;" class="dropdown-toggle">
+				<i class="icon-film"></i>
+				<span class="menu-text">职位分类管理</span>
+				<b class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
+				<li <if condition="[ac] eq 'xxx'">class="active open"</if>>
+					<a href="{:U('Admin/Type/index')}">
+						<i class="icon-double-angle-right"></i>
+						全部分类列表
+					</a>
+				</li>
+			</ul>
+		</li>
+
+		<li <if condition="[nav] eq 'link'">class="active open"</if>>
+			<a href="javascript:;" class="dropdown-toggle">
+				<i class="icon-heart"></i>
+				<span class="menu-text">友情连接管理</span>
+				<b class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
+				<li <if condition="[ac] eq 'index'">class="active open"</if>>
+					<a href="{:U('Admin/Link/index')}">
+						<i class="icon-double-angle-right"></i>
+						友情链接列表
+					</a>
+				</li>
+			</ul>
+		</li>
+
+		<li <if condition="[nav] eq 'manager'">class="active open"</if>>
+			<a href="javascript:;" class="dropdown-toggle">
+				<i class="icon-legal"></i>
+				<span class="menu-text">管理员管理</span>
+				<b class="arrow icon-angle-down"></b>
+			</a>
+			<ul class="submenu">
+				<li>
+				<a href={:U('Admin/Manager/index')}>
+						<i class="icon-double-angle-right"></i>
+						管理员列表
+					</a>
+				</li>
+			</ul>
+		</li>
+
+	</ul>
+
+	<div class="sidebar-collapse" id="sidebar-collapse">
+		<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+	</div>
+
+	<script type="text/javascript">
+		try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+	</script>
+</div>

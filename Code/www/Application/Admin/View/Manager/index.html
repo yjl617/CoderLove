@@ -1,0 +1,124 @@
+<extend name="Public/base" />
+
+
+{// 导航}
+<block name="breadcrumb">
+<li class="active">管理员列表</li>
+</block>
+
+{// 左侧菜单}
+<block name="sidebar">
+	<include file="Public/sidebar" nav="manager"/>
+</block>
+
+{// 主体}
+<block name="main">
+<div class="row-fluid">
+	<h3 class="header blue lighter smaller">
+		<form action="{:U('Admin/Manager/index')}" method="get">
+		<div class="row-fluid  dataTables_wrapper">
+			<div class="span4">
+				<button class="btn btn-primary btn-small" onclick="$.lagou.formShow('{:U('Admin/Manager/add')}');" type="button"><i class="icon-plus"></i>创建管理员</button>
+			</div>
+			<div class="span8" id="m_search_div">
+				<button type="submit" class="btn btn-primary btn-small pull-right" id="search_submit"><i class="icon-ok bigger-110"></i>搜索</button>
+				<input name="username" value="{$map.username}" type="text" id="search_username" class="pull-right" placeholder="用户名"/>
+				<label class="control-label pull-right">用户名：</label>
+			</div>	
+		</div>
+		</form>
+	</h3>
+	<div class="table-header">管理员列表</div>
+	<table id="data_table" class="table table-striped table-bordered table-hover" style="margin-bottom:0px;">
+		<thead>
+			<tr>
+				<th class="center">
+					<label>
+						<input type="checkbox" class="ace" />
+						<span class="lbl"></span>
+					</label>
+				</th>
+				<th>id</th>
+				<th>用户名</th>
+				<th class="hidden-480">图片</th>
+				<th class="hidden-phone">
+					<i class="icon-time bigger-110 hidden-phone"></i>创建时间
+				</th>
+				<th class="hidden-phone">
+					<i class="icon-time bigger-110 hidden-phone"></i>最后登录时间 / 最后登录IP
+				</th>
+				<th>状态</th>
+				<th class="hidden-480">操作</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<?php foreach ($data as $key => $value): ?>
+				<tr>
+					<td class="center">
+						<label>
+							<input type="checkbox" class="ace" />
+							<span class="lbl"></span>
+						</label>
+					</td>
+					<td>{$value.id}</td>
+					<td>{$value.username}</td>
+					<td class="hidden-480">
+						<img src="{:lg_admin_logo($value['id'], $value['image'])}" style="width:32px;height:32px;" />
+					</td>
+					<td>{$value.create_time|date="Y-m-d H:i", ###}</td>
+					<td>{$value.login_time|date="Y-m-d H:i", ###} / {$value.login_ip|default="暂未登录"}</td>
+					<td>
+						<?php echo $value['status'] == 1 ? '<span class="label label-success arrowed">启用</span>' : '<span class="label label-important arrowed-in">禁用</span>' ; ?>
+					</td>
+					<td>
+						<div class="hidden-phone visible-desktop action-buttons">
+							<a href="javascript:;" onclick="$.lagou.formShow('{:U('Admin/Manager/edit', array('user_id'=>$value['id']))}');" class="blue tooltip-info no-hover-underline" data-rel="tooltip" data-original-title="编辑资料">
+								<i class="icon-pencil bigger-130"></i>
+							</a>
+							<a href="javascript:;" onclick="$.del('{:U('Admin/Manager/del', array('user_id'=>$value['id']))}');" class="red tooltip-error no-hover-underline" data-rel="tooltip" data-original-title="删除管理员"><i class="icon-trash bigger-130"></i></a>
+						</div>
+					</td>
+				</tr>
+			<?php endforeach ?>
+		</tbody>
+	</table>
+	<!-- 分页 -->
+	<div class="row-fluid">
+		<div class="page">{$page}</div>
+	</div>
+</div>
+</block>
+
+{// js}
+<block name="js">
+	<script type="text/javascript">
+			jQuery(function($) {
+
+				// 这就是全选按钮
+				$('table th input:checkbox').on('click' , function(){
+					var that = this;
+					$(this).closest('table').find('tr > td:first-child input:checkbox')
+					.each(function(){
+						this.checked = that.checked;
+						$(this).closest('tr').toggleClass('selected');
+					});	
+				});
+				
+				$.extend({
+
+					del : function(url)
+					{
+						$.lagou.confirm('确认删除么', function(res){
+							if (res) {
+								$.get(url, function(response){
+									$.lagou.alert(response.msg, response.code, 2);
+									location.reload(0);
+								});
+							}
+						});
+					}
+				});
+			})
+		</script>
+</block>

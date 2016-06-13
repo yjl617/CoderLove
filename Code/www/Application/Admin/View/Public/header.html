@@ -1,0 +1,52 @@
+<div class="navbar" id="navbar">
+	<div class="navbar-inner">
+		<div class="container-fluid">
+			<a href="#" class="brand">
+				<small>
+					<i class="icon-comments"></i>
+					拉勾网 - 运营管理平台
+				</small>
+			</a><!--/.brand-->
+
+			<ul class="nav ace-nav pull-right">
+
+				<li class="light-blue">
+					<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+						<img class="nav-user-photo" src="{:lg_admin_logo(session('admin.id'), session('admin.image'))}" alt="{:session('admin.username')}" />
+						<span class="user-info">
+							<small>欢迎回来</small>
+							{:session('admin.username')}
+						</span>
+
+						<i class="icon-caret-down"></i>
+					</a>
+
+					<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+						<!-- <li>
+							<a href="#">
+								<i class="icon-cog"></i>
+								修改信息
+							</a>
+						</li> -->
+
+						<li>
+							<a href="javascript:;" onclick="$.lagou.formShow('{:U('admin/user/editPwd')}');">
+								<i class="icon-lock"></i>
+								修改密码
+							</a>
+						</li>
+
+						<li class="divider"></li>
+
+						<li>
+							<a href="{:U('Login/logout')}">
+								<i class="icon-off"></i>
+								退出
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul><!--/.ace-nav-->
+		</div><!--/.container-fluid-->
+	</div><!--/.navbar-inner-->
+</div>

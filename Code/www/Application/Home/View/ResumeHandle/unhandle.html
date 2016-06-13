@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>拉勾网-最专业的互联网招聘平台</title>
+        <meta content="拉勾网是3W旗下的互联网领域垂直招聘网站" name="description">
+        <meta content="拉勾,拉勾网,拉勾招聘,拉钩, 拉钩网 ,互联网招聘,拉勾互联网招聘, 移动互联网招聘, 垂直互联网招聘, 微信招聘, 微博招聘, 拉勾官网, 拉勾百科,跳槽, 高薪职位, 互联网圈子, IT招聘, 职场招聘, 猎头招聘,O2O招聘, LBS招聘, 社交招聘, 校园招聘, 校招,社会招聘,社招" name="keywords">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/HomeStyle/css/style.css">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/HomeStyle/css/style_002.css">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/HomeStyle/css/external.css">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/HomeStyle/css/popup.css">
+        <script src="__PUBLIC__/HomeStyle/js/jquery_003.js" type="text/javascript"></script>
+        <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/jquery.js"></script>
+        <script src="__PUBLIC__/HomeStyle/js/ajaxfileupload.js" type="text/javascript"></script>
+        <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/additional-methods.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/jquery.ui.datetimepicker.min.js"></script>
+        <style>
+            .resume_fit {
+                width: 106px;
+            }
+            .resume_link a {
+                width:100px;
+            }
+            .resume_intro em {
+                background: url("__PUBLIC__/HomeStyle/images/corp/unread.png") no-repeat scroll 5px -17px rgba(0, 0, 0, 0);
+            }
+            #cboxClose {
+                background: url("__PUBLIC__/HomeStyle/images/controls.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div id="body">
+            <include file="Public/header" nav="handle" />
+            <!-- end #header -->
+            <div id="container">
+                <include file="Public/sidebar" nav="unhandle" />
+                <div class="content">
+                    <input id="pageType" value="2" type="hidden">
+                    <dl class="company_center_content">
+                        <dt id="autofiletitle">
+                            <h1>
+                                <em>
+                                </em>
+                                待处理简历
+                            </h1>
+                        </dt>
+                        <dd>
+                            <form id="filterForm" method="get" action="http://hr.lagou.com/interview/unHandlelist.html">
+                                <empty name="send">
+                                <div class="no_resume_tip no_resume_home">
+                                    暂时还没有需要处理的简历呢
+                                </div>
+                                <div class="unHandle_links">
+                                    <div>
+                                        共收到
+                                        <span>
+                                            {$resume_total}
+                                        </span>
+                                        份应聘简历
+                                    </div>
+                                    <a href="{:U('Home/ResumeHandle/unhandle')}">
+                                        待处理简历（{$unhandle_total}）
+                                    </a>
+                                    <a href="http://hr.lagou.com/interview/arranged.html">
+                                        已安排面试（{$audition_total}）
+                                    </a>
+                                    <a href="http://hr.lagou.com/interview/haveRefuselist.html">
+                                        不合适简历（{$notPass_total}）
+                                    </a>
+                                </div>
+                                <else />
+                              <!--   <div class="filter_actions">
+                                    <label class="checkbox">
+                                        <input type="checkbox">
+                                        <i></i>
+                                    </label>
+                                    <span class="mf12">
+                                        全选
+                                    </span>
+                                    <a href="javascript:;" class="mark_nofit" id="resumeRefuseAll">
+                                        不合适
+                                    </a> -->
+                                    <!-- <ul class="filter_btn reset">
+                                        <li id="filter_btn2">
+                                            <span>
+                                                筛选简历
+                                            </span>
+                                            <i>
+                                            </i>
+                                        </li>
+                                    </ul> -->
+                                <!-- </div> -->
+                                <!-- end .filter_actions -->
+                                <!-- <div class="filter_options">
+                                    <dl>
+                                        <input name="defaultCondition" value="true" id="defaultCondition" type="hidden">
+                                        <dt>
+                                            简历状态：
+                                        </dt>
+                                        <dd>
+                                            <a class="current" rel="-1">
+                                                不限
+                                            </a>
+                                            <a rel="1">
+                                                未阅读
+                                            </a>
+                                            <a rel="2">
+                                                已阅读
+                                            </a>
+                                            <a rel="3">
+                                                已转发
+                                            </a>
+                                            <a rel="4">
+                                                待确认
+                                            </a>
+                                            <a rel="5">
+                                                反馈未收到面试
+                                            </a>
+                                            <input name="statusFilter" value="-1" type="hidden">
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>
+                                            工作经验：
+                                        </dt>
+                                        <dd>
+                                            <a class="current" rel="0">
+                                                不限
+                                            </a>
+                                            <a rel="1">
+                                                应届毕业生
+                                            </a>
+                                            <a rel="2">
+                                                1年以下
+                                            </a>
+                                            <a rel="3">
+                                                1-3年
+                                            </a>
+                                            <a rel="4">
+                                                3-5年
+                                            </a>
+                                            <a rel="5">
+                                                5-10年
+                                            </a>
+                                            <a rel="6">
+                                                10年以上
+                                            </a>
+                                            <input name="workExp" value="0" type="hidden">
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>
+                                            最低学历：
+                                        </dt>
+                                        <dd>
+                                            <a class="current" rel="-1">
+                                                不限
+                                            </a>
+                                            <a rel="1">
+                                                大专及以上
+                                            </a>
+                                            <a rel="2">
+                                                本科及以上
+                                            </a>
+                                            <a rel="3">
+                                                硕士及以上
+                                            </a>
+                                            <a rel="4">
+                                                博士及以上
+                                            </a>
+                                            <input name="eduCode" value="-1" type="hidden">
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>
+                                            自动回绝
+                                        </dt>
+                                        <dd>
+                                            <a class="current" rel="-1">
+                                                不限
+                                            </a>
+                                            <a rel="3">
+                                                3天内将自动回绝
+                                            </a>
+                                            <a rel="1">
+                                                1天内将自动回绝
+                                            </a>
+                                            <input name="autoRefuseDay" value="-1" type="hidden">
+                                        </dd>
+                                    </dl>
+                                    <input id="positionId" name="positionId" value="" type="hidden">
+                                </div> -->
+                                <!-- end .filter_options -->
+                                <ul class="resume_lists">
+                                    <foreach name="send" item="sendVal">
+                                    <li data-flag="{$sendVal.id}">
+                                        <span class="resume_header2">
+                                            <span class="time">
+                                                {$sendVal.state1_time|date="Y-m-d H:i:m", ###}
+                                            </span>
+                                            <!-- <label class="checkbox">
+                                                <input type="checkbox">
+                                                <i></i>
+                                            </label> -->
+                                            <span class="employee">
+                                                应聘：
+                                                <a href="{:U(Home/Company)}" class="employee_position"
+                                                title="HTML5" target="_blank">
+                                                    {$sendVal.job_name}
+                                                </a>
+                                            </span>
+                                            <input value="true" id="noEmail_{$sendVal.id}" type="hidden">
+                                        </span>
+                                        <div class="resume_show">
+                                            <a href="{:U('Home/ResumeHandle/show', array('id'=>$sendVal['user_id'], 'sid'=>$sendVal['id']))}" class="resumeImg"
+                                            target="_blank" title="预览附件简历">
+                                                <if condition="$sendVal['user']['image'] eq ''">
+                                                <img src="__PUBLIC__/HomeStyle/images/icon_file.png" height="69" width="69">
+                                                <else />
+                                                <img src="/Uploads/User/image/{$sendVal.user.image}" height="69" width="69">
+                                                </if>
+                                            </a>
+                                            <a href="{:U('Home/ResumeHandle/show', array('id'=>$sendVal['user_id'], 'sid'=>$sendVal['id']))}" target="_blank" class="hotspace">
+                                                <div class="resume_intro" data-flag="{$sendVal.id}">
+                                                    {$sendVal.user.name} / {$sendVal.user.sex} / {$sendVal.user.work_year} / {$sendVal.hope.city}
+                                                    <if condition="$sendVal.read eq 0">
+                                                    <em class="read"></em>
+                                                    <else />
+                                                    <em></em>
+                                                    </if>
+                                                    <empty name="sendVal.work">
+                                                    <else />
+                                                    <br>
+                                                    {$sendVal.work.job} · {$sendVal.work.company}
+                                                    <br>
+                                                    </empty>
+                                                    <empty name="sendVal.edu">
+                                                    <else />
+                                                    {$sendVal.edu.school} · {$sendVal.edu.professional} · {$sendVal.edu.education}
+                                                    </empty>
+                                                </div>
+                                            </a>
+                                            <div class="resume_link look_resume_link">
+                                                <if condition="$sendVal.state2 eq 0">
+                                                <span data-flag="flag" data-deliverid="{$sendVal.id}">
+                                                    查看联系方式
+                                                </span>
+                                                <else />
+                                                <a class="phone" href="javascript:;">{$sendVal.user.phone}</a>
+                                                <a class="resume_color phone" title="247678652@qq.com" href="javascript:;">{$sendVal.user.email}</a>
+                                                </if>
+                                            </div>
+
+                                            <if condition="$sendVal['state2'] eq 0">
+                                            <div class="resume_fit look_resume_fit">
+                                                <span class="resume_refuse" data-deliverid="{$sendVal.id}">
+                                                    不合适
+                                                </span>
+                                                <a style="z-index: 6;" href="javascript:;" class="resume_forward" data-resumename="{$sendVal.user.name}的简历"
+                                                data-deliverid="{$sendVal.id}" data-positionname="{$sendVal.job_name}" data-forwardcount="0">
+                                                    转发
+                                                </a>
+                                            </div>
+                                            <div class="resume_fit send_notice dn">
+                                                <div class="send_notice2">
+                                                    <span class="send_interview resume_notice" data-positionname="{$sendVal.job_name}" data-name="{$sendVal.user.name}"
+                                                    data-deliverid="{$sendVal.id}" data-email="{$sendVal.user.email}">
+                                                        发面试通知
+                                                    </span>
+                                                </div>
+                                                <div class="send_notice_con">
+                                                    <a href="javascript:;" class="resume_refuse" data-deliverid="{$sendVal.id}">
+                                                        不合适
+                                                    </a>
+                                                    <a href="javascript:;" class="resume_forward" data-deliverid="{$sendVal.id}"
+                                                    data-resumename="{$sendVal.user.name}的简历" data-positionname="{$sendVal.job_name}" data-forwardcount="0">
+                                                        转发
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <else />
+                                            <div class="resume_fit send_notice">
+                                                <div class="send_notice2">
+                                                    <span class="send_interview resume_notice" data-positionname="{$sendVal.job_name}" data-name="{$sendVal.user.name}"
+                                                    data-deliverid="{$sendVal.id}" data-email="{$sendVal.user.email}">
+                                                        发面试通知
+                                                    </span>
+                                                </div>
+                                                <div class="send_notice_con">
+                                                    <a href="javascript:;" class="resume_refuse" data-deliverid="{$sendVal.id}">
+                                                        不合适
+                                                    </a>
+                                                    <if condition="$sendVal['state3'] eq 0">
+                                                    <a href="javascript:;" class="resume_forward" data-deliverid="{$sendVal.id}"
+                                                    data-resumename="{$sendVal.user.name}的简历" data-positionname="{$sendVal.job_name}" data-forwardcount="0">
+                                                        转发
+                                                    </a>
+                                                    <else />
+                                                    <span style="color:#999">已转发</span>
+                                                    </if>
+                                                </div>
+                                            </div>
+                                            </if>
+                                            
+                                        </div>
+                                    </li>
+                                    </foreach>
+                                </ul>
+                                </empty>
+                                <input name="showContract" value="false" id="showContract" type="hidden">
+                            </form>
+                        </dd>
+                    </dl>
+                    <!-- end .company_center_content -->
+                </div>
+                <!-- end .content -->
+                <input value="{$company.name}" id="noticeCompanyName" type="hidden">
+                <div style="display:none;">
+                    <!--通知面试弹窗-->
+                    <div id="noticeInterview" class="popup" style="height:545px;">
+                        <form id="noticeInterviewForm">
+                            <table class="f16" width="100%">
+                                <tbody>
+                                    <tr>
+                                        <td class="c9" width="20%" align="right">
+                                            收件人
+                                        </td>
+                                        <td width="80%">
+                                            <span id="receiveEmail" class="c9">
+                                            </span>
+                                            <input name="email" readonly="readonly" class="receiveEmail" type="text" value="">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right">
+                                            <span class="redstar">
+                                                *
+                                            </span>
+                                            主题
+                                        </td>
+                                        <td>
+                                            <input name="subject" placeholder="公司：职位名称面试通知" type="text">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right">
+                                            <span class="redstar">
+                                                *
+                                            </span>
+                                            面试时间
+                                        </td>
+                                        <td>
+                                            <input name="interTime" id="datetimepicker" readonly="readonly"
+                                            type="text">
+                                        </td>
+                                    </tr>
+                                    <!-- <tr class="select_templete">
+                                        <td align="right">
+                                            <span>
+                                                可选模板
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="notice_templete" style="margin-left:0;">
+                                                <input name="selectTemplate" readonly="readonly" id="notice_select_templete"
+                                                placeholder="系统模板（默认模板）" class="profile_select_265 profile_select_normal"
+                                                type="text">
+                                            </span>
+                                            <div class="boxUpDown dn">
+                                                <ul class="reset">
+                                                </ul>
+                                            </div>
+                                            <a target="_blank" href="http://hr.lagou.com/templates/InterviewTemplateManagement.html"
+                                            class="templete_manage">
+                                                模板管理
+                                            </a>
+                                        </td>
+                                    </tr> -->
+                                    <tr>
+                                        <td align="right">
+                                            <span class="redstar">
+                                                *
+                                            </span>
+                                            面试地点
+                                        </td>
+                                        <td>
+                                            <input name="interAdd" type="text">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right">
+                                            联系人
+                                        </td>
+                                        <td>
+                                            <input name="linkMan" type="text">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right">
+                                            <span class="redstar">
+                                                *
+                                            </span>
+                                            联系电话
+                                        </td>
+                                        <td>
+                                            <input name="linkPhone" type="text">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top" align="right">
+                                            补充内容
+                                        </td>
+                                        <td>
+                                            <textarea name="content">
+                                            </textarea>
+                                        </td>
+                                    </tr>
+                                    <tr align="right">
+                                        <td>
+                                        </td>
+                                        <td class="effect">
+                                            编辑内容仅针对本次发送，不会影响模板
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        </td>
+                                        <td>
+                                            <input class="btn" value="发送" type="submit">
+                                            <a href="javascript:;" class="emailPreview">
+                                                预览
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <input name="name" value="" type="hidden">
+                            <input name="positionName" value="" type="hidden">
+                            <input name="companyName" value="" type="hidden">
+                            <input name="deliverId" id="deliverId" type="hidden">
+                        </form>
+                    </div>
+                    <!--/#noticeInterview-->
+                    <!--预览通知面试弹窗-->
+                    <div id="noticeInterviewPreview" class="popup">
+                        <div class="f18">
+                            拉勾网：产品经理面试通知
+                        </div>
+                        <div class="c9">
+                            发给：
+                            <span>
+                                vivi@lagou.com
+                            </span>
+                        </div>
+                        <div id="emailText">
+                        </div>
+                        <input class="btn fl" value="提交" type="button">
+                        <a href="#noticeInterview" class="inline fl cboxElement" title="通知面试">
+                            返回修改
+                        </a>
+                    </div>
+                    <!--/#noticeInterviewPreview-->
+                    <!--通知面试成功弹窗-->
+                    <div id="noticeInterviewSuccess" class="popup">
+                        <table class="f16" width="100%">
+                            <tbody>
+                                <tr>
+                                    <td class="f16" align="center">
+                                        面试通知已发送成功
+                                        <br>
+                                        该简历已进入“已安排面试”列表
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <input class="btn" value="确认" type="button">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--/#noticeInterviewSuccess-->
+                    <!--转发简历弹窗-->
+                    <div id="forwardResume" class="popup">
+                        <form id="forwardResumeForm">
+                            <table class="f16" width="100%">
+                                <tbody>
+                                    <tr>
+                                        <td nowrap="nowrap" width="20%" align="right">
+                                            收件人
+                                        </td>
+                                        <td width="80%">
+                                            <input name="recipients" id="recipients" placeholder="最多可添加两个邮箱，用“；”隔开"
+                                            type="text">
+                                            <span class="beError" style="display:none" id="forwardResumeError">
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right">
+                                            主题
+                                        </td>
+                                        <td>
+                                            <input name="title" type="text">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top" align="right">
+                                            正文
+                                        </td>
+                                        <td>
+                                            <textarea name="content">
+                                            </textarea>
+                                            <span class="beError error" style="display:none;">
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        </td>
+                                        <td>
+                                            <input class="btn" value="发送" type="submit">
+                                            <a href="javascript:;" class="emial_cancel">
+                                                取消
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <input name="resumeKey" value="" type="hidden">
+                            <input name="forwardKey" value="" type="hidden">
+                            <input name="positionId" value="" type="hidden">
+                            <input name="deliverId" value="" type="hidden">
+                            <input name="positionName" value="" type="hidden">
+                        </form>
+                    </div>
+                    <!--/#forwardResume-->
+                    <!--转发简历成功弹窗-->
+                    <div id="forwardResumeSuccess" class="popup">
+                        <table class="f16" width="100%">
+                            <tbody>
+                                <tr>
+                                    <td class="f16" align="center">
+                                        简历已转发成功
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <input class="btn" value="确认" type="button">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--/#forwardResumeSuccess-->
+                    <!--确认不合适弹窗-->
+                    <div id="confirmRefuse" class="popup" style="height:500px;">
+                        <form id="refuseMailForm">
+                            <table width="100%">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="refuse_icon">
+                                                <h3>
+                                                    <em>
+                                                    </em>
+                                                    确认这份简历不合适吗？
+                                                </h3>
+                                                <span>
+                                                    确认后，系统将自动发送不合适通知邮件至用户邮箱
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- <tr class="select_templete select_templete2">
+                                        <td>
+                                            <span>
+                                                可选模板
+                                            </span>
+                                            <span class="selectRefuse">
+                                                <input class="profile_select_265 profile_select_normal" readonly="readonly"
+                                                placeholder="系统模板（默认模板）" id="refuse_select_templete" type="text">
+                                            </span>
+                                            <div class="boxUpDown dn">
+                                                <ul class="reset">
+                                                </ul>
+                                            </div>
+                                            <a target="_blank" href="http://hr.lagou.com/templates/RefuseTemplateManagement.html"
+                                            class="templete_manage">
+                                                模板管理
+                                            </a>
+                                        </td>
+                                    </tr> -->
+                                    <tr>
+                                        <td>
+                                            <textarea name="content">
+                                                非常荣幸收到您的简历，在我们仔细阅读您的简历之后，却不得不很遗憾的通知您： 您的简历与该职位的定位有些不匹配，因此无法进入面试。 但您的信息已录入我司人才储备库，当有合适您的职位开放时我们将第一时间联系您，希望在未来我们有机会成为一起拼搏的同事；
+                                                再次感谢您投递AAA公司，感谢您对我们的信任； 祝您早日找到满意的工作。
+                                            </textarea>
+                                        </td>
+                                    </tr>
+                                    <tr align="right">
+                                        <td class="effect">
+                                            编辑内容仅针对本次发送，不会影响模板
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input class="btn" value="确认不合适" type="submit">
+                                            <a href="javascript:;" class="emial_cancel">
+                                                取消
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <input name="deliverId" value="" type="hidden">
+                        </form>
+                    </div>
+                    <!--/#confirmRefuse-->
+                    <!--拒绝email成功弹窗-->
+                    <div id="refuseMailSuccess" class="popup">
+                        <table class="f16" width="100%">
+                            <tbody>
+                                <tr>
+                                    <td class="f16" align="center">
+                                        不合适通知已发送成功
+                                        <br>
+                                        该简历已进入“不合适简历”列表
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <input class="btn" value="确认" type="button">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--/#refuseMailSuccess-->
+                </div>
+                <div style="display:none;">
+                    <div id="weixinQR" class="popup" style="width:500px;*height:220px;">
+                        <table width="100%">
+                            <tbody>
+                                <tr class="weixinQR">
+                                    <td>
+                                        <div class="weixin">
+                                            <div class="qr">
+                                                <img src="" height="100" width="100">
+                                                <div>
+                                                    [仅限本人使用]
+                                                </div>
+                                            </div>
+                                            <div class="qr_text">
+                                                <h3>
+                                                    关注微信服务号，可随时获取接收简历的通知
+                                                </h3>
+                                                关注方式：
+                                                <br>
+                                                <span>
+                                                    打开微信
+                                                </span>
+                                                <img src="__PUBLIC__/HomeStyle/images/wx1.png"
+                                                height="30" width="30">
+                                                <span>
+                                                    →发现
+                                                </span>
+                                                <img src="__PUBLIC__/HomeStyle/images/wx2.png"
+                                                height="30" width="31">
+                                                <span>
+                                                    →扫一扫左侧二维码
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <a href="javascript:;" class="btn_s">
+                                            我已关注
+                                        </a>
+                                        <a href="javascript:;" class="qr_cancel f18">
+                                            下次再关注
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--/#weixinQR-->
+                </div>
+                <img id="guide_line" class="dn" src="__PUBLIC__/HomeStyle/images/tipsarr.png"
+                alt="引导线" height="50" width="150">
+                <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/jquery_002.js">
+                </script>
+                <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/new_received_resumes.js">
+                </script>
+                <script>
+                    $(function() {
+
+                        var resumeLength = $('.resume_lists li').length;
+                        if (L.cookie('functionMask') == null && resumeLength > 0) {
+                            L('#guide_all').show();
+                            L.cookie('functionMask', '1', {
+                                expires: 365
+                            });
+                        } else {
+                            L('#guide_all').hide();
+                        }
+                    })
+                </script>
+                <div class="clear">
+                </div>
+                <input id="resubmitToken" value="" type="hidden">
+                <a style="display: inline;" id="backtop" title="回到顶部" rel="nofollow">
+                </a>
+            </div>
+            <!-- end #container -->
+        </div>
+        <!-- end #body -->
+        <include file="Public/footer" />
+        <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/core.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/popup.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/tongji.js"></script>
+        <!-- -->
+        <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/analytics_002.js"></script>
+        <script src="__PUBLIC__/HomeStyle/js/h.js" type="text/javascript"></script>
+        <script type="text/javascript">
+
+
+
+        </script>
+    </body>
+</html>

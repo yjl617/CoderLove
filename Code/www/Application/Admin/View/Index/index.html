@@ -1,0 +1,281 @@
+<extend name="Public/base" />
+
+{// 导航}
+<block name="breadcrumb">
+<li class="active">控制台</li>
+</block>
+
+{// 左侧菜单}
+<block name="sidebar">
+	<include file="Public/sidebar" nav="index"/>
+</block>
+
+{// 主体}
+<block name="main">
+<div class="row-fluid">
+	<div class="span12">
+		<div class="alert alert-block alert-success">
+			<button data-dismiss="alert" class="close" type="button">
+				<i class="icon-remove"></i>
+			</button>
+			<i class="icon-ok green"></i>
+			欢迎来到
+			<strong class="green">
+				拉勾网 - 运营管理平台
+				<small>(v1.0)</small>
+			</strong>
+			, 我们提供专业的 简历 筛选,帮助上千家企业找到合适的员工.
+		</div>
+		<div class="space-6"></div>
+		<div class="row-fluid">
+			<div class="span7 infobox-container">
+
+				<div class="infobox infobox-green">
+					<div class="infobox-icon">
+						<i class="icon-bar-chart"></i>
+					</div>
+
+					<div class="infobox-data">
+						<span class="infobox-data-number">{$data.resume_total}</span>
+						<div class="infobox-content">用户简历数</div>
+					</div>
+					
+				</div>
+
+				<div class="infobox infobox-blue">
+					<div class="infobox-icon">
+						<i class="icon-bar-chart"></i>
+					</div>
+
+					<div class="infobox-data">
+						<span class="infobox-data-number">{$data.job_total}</span>
+						<div class="infobox-content">招聘职位数</div>
+					</div>
+					
+				</div>
+
+				<div class="infobox infobox-pink">
+					<div class="infobox-icon">
+						<i class="icon-bar-chart"></i>
+					</div>
+
+					<div class="infobox-data">
+						<span class="infobox-data-number">{$data.link_total}</span>
+						<div class="infobox-content">友情链接数</div>
+					</div>
+					
+				</div>
+
+				<div class="infobox infobox-red">
+					<div class="infobox-icon">
+						<i class="icon-bar-chart"></i>
+					</div>
+
+					<div class="infobox-data">
+						<span class="infobox-data-number">{$data.user_incheck}</span>
+						<div class="infobox-content">已验证用户数</div>
+					</div>
+					
+				</div>
+
+				<div class="infobox infobox-orange2">
+					<div class="infobox-icon">
+						<i class="icon-bar-chart"></i>
+					</div>
+
+					<div class="infobox-data">
+						<span class="infobox-data-number">{$data.user_uncheck}</span>
+						<div class="infobox-content">未验证用户数</div>
+					</div>
+					
+				</div>
+
+				<div class="infobox infobox-blue2">
+					<div class="infobox-icon">
+						<i class="icon-bar-chart"></i>
+					</div>
+
+					<div class="infobox-data">
+						<span class="infobox-data-number">{$data.company_incheck}</span>
+						<div class="infobox-content">已验证企业用户数</div>
+					</div>
+					
+				</div>
+
+				<div class="infobox infobox-green">
+					<div class="infobox-icon">
+						<i class="icon-bar-chart"></i>
+					</div>
+
+					<div class="infobox-data">
+						<span class="infobox-data-number">{$data.company_uncheck}</span>
+						<div class="infobox-content">未验证企业用户数</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="vspace"></div>
+			<div class="span5">
+				<div class="widget-box">
+					<div class="widget-header widget-header-flat widget-header-small">
+						<h5><i class="icon-signal"></i>全部用户</h5>
+					</div>
+					<div class="widget-body">
+						<div class="widget-main">
+							<div id="piechart-placeholder"></div>
+							<div class="hr hr8 hr-double"></div>
+							<div class="clearfix">
+								<div style="width:45%;float:left;">
+									<span class="grey">
+										<i class="icon-group icon-2x blue"></i>
+										&nbsp; 普通用户
+									</span>
+									<h4 class="bigger pull-right">{$data.user_total}</h4>
+								</div>
+								<div style="width:45%;float:right;">
+									<span class="grey">
+										<i class="icon-group icon-2x red"></i>
+										&nbsp; 企业用户
+									</span>
+									<h4 class="bigger pull-right">{$data.company_total}</h4>
+								</div>
+								<div style="clear:both;"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="hr hr32 hr-dotted"></div>
+		<!-- <div class="row-fluid">
+			<div class="span12">
+				<div class="widget-box">
+					<div class="widget-header">
+						<h4 class="lighter smaller">
+							<i class="icon-calendar blue"></i>
+							操作日志
+						</h4>
+					</div>
+
+					<div class="widget-body">
+						<div class="widget-main no-padding">
+							<div class="dialogs">
+
+								<div class="itemdiv dialogdiv">
+									<div class="user">
+										<img alt="Alexa's Avatar" src="__STYLE__/avatars/avatar1.png" />
+									</div>
+									<div class="body">
+										<div class="time">
+											<i class="icon-time"></i>
+											<span class="green">2014-11-09 12:48:36</span>
+										</div>
+
+										<div class="name">
+											<a href="#">仔仔</a>
+										</div>
+										<div class="text">审核了 xxx 企业</div>
+
+										<div class="tools">
+											<a href="#" class="btn btn-minier btn-info">
+												<i class="icon-only icon-share-alt"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>				
+
+			</div>
+		</div> -->
+	</div>
+</div>
+</block>
+
+
+<block name="js">
+<script src="__STYLE__/js/jquery.easy-pie-chart.min.js"></script>
+<script src="__STYLE__/js/jquery.slimscroll.min.js"></script>
+<script src="__STYLE__/js/jquery.sparkline.min.js"></script>
+<script src="__STYLE__/js/flot/jquery.flot.min.js"></script>
+<script src="__STYLE__/js/flot/jquery.flot.pie.min.js"></script>
+<script src="__STYLE__/js/flot/jquery.flot.resize.min.js"></script>
+
+<script type="text/javascript">
+	jQuery(function($){
+
+		$('.dialogs,.comments').slimScroll({
+			height: '300px'
+	    });
+
+		/* 统计饼图 */
+		var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
+		var data = [
+			{ label: "普通用户",  data: {$data.user_bite}, color: "#2091CF"},
+			{ label: "企业用户",  data: {$data.company_bite}, color: "#DE5A42"}
+		]
+		function drawPieChart(placeholder, data, position) {
+			$.plot(placeholder, data, {
+			series: {
+				pie: {
+					show: true,
+					tilt:0.8,
+					highlight: {
+						opacity: 0.25
+					},
+					stroke: {
+						color: '#fff',
+						width: 2
+					},
+					startAngle: 2
+				}
+			},
+			legend: {
+				show: true,
+				position: position || "ne", 
+				labelBoxBorderColor: null,
+				margin:[-30,15]
+			}
+			,
+			grid: {
+				hoverable: true,
+				clickable: true
+			}
+		 })
+		}
+		drawPieChart(placeholder, data);
+
+		/**
+		we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically
+		so that's not needed actually.
+		*/
+		placeholder.data('chart', data);
+		placeholder.data('draw', drawPieChart);
+		var $tooltip = $("<div class='tooltip top in hide'><div class='tooltip-inner'></div></div>").appendTo('body');
+		var previousPoint = null;
+		placeholder.on('plothover', function (event, pos, item) {
+		if(item) {
+			if (previousPoint != item.seriesIndex) {
+				previousPoint = item.seriesIndex;
+				var tip = item.series['label'] + " : " + item.series['percent']+'%';
+				$tooltip.show().children(0).text(tip);
+			}
+			$tooltip.css({top:pos.pageY + 10, left:pos.pageX + 10});
+		} else {
+			$tooltip.hide();
+			previousPoint = null;
+		}
+		});
+		/* /统计饼图 */
+
+
+
+	});
+
+
+
+</script>
+</block>
+

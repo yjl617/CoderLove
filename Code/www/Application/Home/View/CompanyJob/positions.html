@@ -1,0 +1,142 @@
+﻿<!DOCTYPE HTML>
+<html>   
+    <head>
+        <script async="" src="__PUBLIC__/HomeStyle/js/analytics.js"></script>
+        <script src="__PUBLIC__/HomeStyle/js/allmobilize.min.js" charset="utf-8" id="allmobilize"></script>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>我发布的职位-招聘服务-拉勾网-最专业的互联网招聘平台</title>
+        <meta name="description" content="拉勾网是3W旗下的互联网领域垂直招聘网站,互联网职业机会尽在拉勾网">
+        <meta name="keywords" content="拉勾,拉勾网,拉勾招聘,拉钩, 拉钩网 ,互联网招聘,拉勾互联网招聘, 移动互联网招聘, 垂直互联网招聘, 微信招聘, 微博招聘, 拉勾官网, 拉勾百科,跳槽, 高薪职位, 互联网圈子, IT招聘, 职场招聘, 猎头招聘,O2O招聘, LBS招聘, 社交招聘, 校园招聘, 校招,社会招聘,社招">
+        <link href="http://www.lagou.com/images/favicon.ico" rel="Shortcut Icon">
+        <link href="__PUBLIC__/HomeStyle/css/style.css" type="text/css" rel="stylesheet">
+        <link href="__PUBLIC__/HomeStyle/css/external.min.css" type="text/css" rel="stylesheet">
+        <link href="__PUBLIC__/HomeStyle/css/popup.css" type="text/css" rel="stylesheet">
+        <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/jquery.1.10.1.min.js"></script>
+        <script src="__PUBLIC__/HomeStyle/js/jquery.lib.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/ajaxfileupload.js"></script>
+        <script src="__PUBLIC__/HomeStyle/js/additional-methods.js" type="text/javascript"></script>
+        <!--[if lte IE 8]>
+            <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/excanvas.js">
+            </script>
+        <![endif]-->
+    </head>
+    
+    <body>
+        <div id="body">
+            <include file="Public/header" nav="job" />
+            <!-- end #header -->
+            <div id="container">
+            	<include file="Public/sidebar" nav="positions" />
+                <!-- end .sidebar -->
+                <div class="content">
+                    <dl class="company_center_content">
+                        <dt>
+                            <h1>
+                                <em>
+                                </em>
+                                有效职位
+                                <span>
+                                    （共
+                                    <i style="color:#fff;font-style:normal" id="positionNumber">
+                                        {$jobnum}
+                                    </i>
+                                    个）
+                                </span>
+                            </h1>
+                        </dt>
+                        <dd>
+                            <form id="searchForm">
+                                <input type="hidden" value="Publish" name="type">
+                                <ul class="reset my_jobs">
+                                	<foreach name="job" item="jobVal">
+                                    <li data-id="{$jobVal.id}">
+                                        <h3>
+                                            <a target="_blank" title="随便写" href="{:U('Home/JobShow/index', array('jid'=>$jobVal['id']))}">
+                                                {$jobVal.name}
+                                            </a>
+                                            <span>
+                                                [{$jobVal.city}]
+                                            </span>
+                                        </h3>
+                                        <span class="receivedResumeNo">
+                                            <a href="javascript:;" style="cursor:default;color:#555;">
+                                                应聘简历[{$jobVal.send_num}]
+                                            </a>
+                                        </span>
+                                        <div>
+                                            {$jobVal.nature} / {$jobVal.salary_low}k-{$jobVal.salary_high}k / {$jobVal.work_year} / {$jobVal.edu}
+                                        </div>
+                                        <div class="c9">
+                                            发布时间： {$jobVal.create_time|date="Y-m-d H:i:m",###}
+                                        </div>
+                                        <div class="links">
+                                            <a target="_blank" class="job_edit" href="{:U('Home/CompanyJob/create', array('id'=>$jobVal['id']))}">
+                                                编辑
+                                            </a>
+                                            <a class="job_offline" href="javascript:void(0)" data-id="{$jobVal.id}">
+                                                下线
+                                            </a>
+                                            <a class="job_del" href="javascript:void(0)" data-id="{$jobVal.id}">
+                                                删除
+                                            </a>
+                                        </div>
+                                    </li>
+	                                </foreach>
+                                </ul>
+                            </form>
+                        </dd>
+                    </dl>
+                </div>
+                <!-- end .content -->
+                <script src="__PUBLIC__/HomeStyle/js/job_list.min.js" type="text/javascript"></script>
+                <div class="clear"></div>
+                <a rel="nofollow" title="回到顶部" id="backtop">
+                </a>
+            </div>
+            <!-- end #container -->
+        </div>
+        <!-- end #body -->
+        <include file="Public/footer" />
+        <script src="__PUBLIC__/HomeStyle/js/core.min.js" type="text/javascript"></script>
+        <script src="__PUBLIC__/HomeStyle/js/popup.min.js" type="text/javascript"></script>
+        <script src="__PUBLIC__/HomeStyle/js/tongji.js" type="text/javascript"></script>
+        <!-- -->
+        <script src="__PUBLIC__/HomeStyle/js/analytics01.js" type="text/javascript"></script>
+        <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/h.js"></script>
+        <script type="text/javascript">
+            jQuery(function($) {
+                $('.job_offline').click(function() {
+                    var obj = $(this);
+                    if (confirm('确定要将该职位下线吗？下线后该职位将不再展现给用户')) {
+                        $.ajax({
+                            url : "{:U('Home/CompanyJob/cancel')}",
+                            data : {id : obj.attr('data-id')},
+                            type : 'post',
+                            success : function(data) {
+                                obj.parents('li').remove();
+                                $('#positionNumber').html(data.num);
+                            }
+                        });
+                    } 
+                })
+
+                $('.job_del').click(function() {
+                    var obj = $(this);
+                    if (confirm('你确定删除该职位吗?')) {
+                        $.ajax({
+                            url : "{:U('Home/CompanyJob/delete')}",
+                            data : {id : obj.attr('data-id')},
+                            type : 'post',
+                            success : function() {
+                                obj.parents('li').remove();
+                                $('#positionNumber').html(data.num);
+                            }
+                        })
+                    }
+                })
+            })
+            
+        </script>
+    </body>
+
+</html>

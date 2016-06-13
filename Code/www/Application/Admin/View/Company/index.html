@@ -1,0 +1,125 @@
+<extend name="Public/base" />
+
+
+{// 导航}
+<block name="breadcrumb">
+<li class="active">公司信息列表</li>
+</block>
+
+{// 左侧菜单}
+<block name="sidebar">
+	<include file="Public/sidebar" nav="company"/>
+</block>
+
+{// 主体}
+<block name="main">
+<div class="row-fluid">
+	<h3 class="header blue lighter smaller">
+		<form action="{:U('Admin/Company/index')}" method="get">
+		<div class="row-fluid  dataTables_wrapper">
+			<div class="span12" id="m_search_div">
+				<button type="submit" class="btn btn-primary btn-small pull-right" id="search_submit"><i class="icon-ok bigger-110"></i>搜索</button>
+				<input name="name" value="{$map.name}" type="text" id="search_name" class="pull-right" placeholder="用户名"/>
+				<label class="control-label pull-right">公司名：</label>
+			</div>	
+		</div>
+		</form>
+	</h3>
+	<div class="table-header">公司信息列表</div>
+	<table id="data_table" class="table table-striped table-bordered table-hover" style="margin-bottom:0px;">
+		<thead>
+			<tr>
+				<th class="center" width="5%">
+					<label>
+						<input type="checkbox" class="ace" />
+						<span class="lbl"></span>
+					</label>
+				</th>
+				<th width="6%">公司LOGO</th>
+				<th width="15%">公司名称(简称)</th>
+				<th>一句话介绍</th>
+				<th>职位</th>
+				<th width="6%">状态</th>
+				<th width="8%">操作</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<?php foreach ($data as $key => $val): ?>
+				<tr>
+					<td class="center">
+						<label>
+							<input type="checkbox" class="ace" />
+							<span class="lbl"></span>
+						</label>
+					</td>
+					<td>
+						<span data-original-title="{$val.name}信息" data-rel="popover" class="tooltip-info" data-content="电话：{$val.tel}<br/>邮箱：{$val.email}<br/>公司领域：<b class='orange'>{$val.trade}</b><br/>公司网站：<a href='http://{$val.web}' target='_blank'>{$val.web}</a><br/>城市：{$val.city}<br/>规模人数：{$val.scale}<br/>发展阶段：{$val.stage}<br/>公司描述：{$val.desc}<br/>一句话：{$val.one_desc}">
+							<?php if (empty($val['logo'])): ?>
+							<?php $val['logo'] = '/Public/Assets/images/dimg.jpg'; ?>
+							<?php endif ?>
+							<img src="{$val.logo}" style="width:45px;height:45px;cursor:pointer;">
+						</span>
+					</td>
+					<td><a href="{:U('Home/Index/showCompany', array('id'=>$val['id']))}" target="_blank">{$val.name}【{$val.short_name}】</a></td>
+					<td>{$val.one_desc}</td>
+					<td><a href="{:U('Admin/CompanyJob/index', array('id'=>$val['id']))}" class="btn btn-mini btn-success">点击查看职位</a></td>
+					<td>{:C('company_state')[$val['state']]}</td>
+					<td>
+						<div class="hidden-phone visible-desktop action-buttons">
+							<?php if ($val['state'] == 0): ?>
+								<a href="javascript:;" class="blue tooltip-info no-hover-underline" data-rel="tooltip" data-original-title="重新启用" onclick="$.check('{:U('Admin/Company/allow', array('id'=>$val['id']))}');">
+									<i class="icon-legal bigger-130"></i>
+								</a>
+							<?php else: ?>
+								<a href="javascript:;" class="red tooltip-info no-hover-underline" data-rel="tooltip" data-original-title="禁用" onclick="$.check('{:U('Admin/Company/deny', array('id'=>$val['id']))}');">
+									<i class="icon-legal bigger-130"></i>
+								</a>
+							<?php endif ?>
+						</div>
+					</td>
+				</tr>
+			<?php endforeach ?>
+		</tbody>
+	</table>
+	<!-- 分页 -->
+	<div class="row-fluid">
+		<div class="page">{$page}</div>
+	</div>
+</div>
+</block>
+
+{// js}
+<block name="js">
+	<script type="text/javascript">
+			jQuery(function($) {
+
+				// 这就是全选按钮
+				$('table th input:checkbox').on('click' , function(){
+					var that = this;
+					$(this).closest('table').find('tr > td:first-child input:checkbox')
+					.each(function(){
+						this.checked = that.checked;
+						$(this).closest('tr').toggleClass('selected');
+					});	
+				});
+
+
+				$.extend({
+
+					check : function(url)
+					{
+						$.lagou.confirm('确认执行操作么？', function(res){
+							if (res) {
+								$.get(url, function(response){
+									$.lagou.alert(response.msg, response.code, 2);
+									location.reload(0);
+								});
+							}
+						});
+					}
+				});
+			
+			})
+		</script>
+</block>

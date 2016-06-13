@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>拉勾网-最专业的互联网招聘平台</title>
+        <meta content="拉勾网是3W旗下的互联网领域垂直招聘网站" name="description">
+        <meta content="拉勾,拉勾网,拉勾招聘,拉钩, 拉钩网 ,互联网招聘,拉勾互联网招聘, 移动互联网招聘, 垂直互联网招聘, 微信招聘, 微博招聘, 拉勾官网, 拉勾百科,跳槽, 高薪职位, 互联网圈子, IT招聘, 职场招聘, 猎头招聘,O2O招聘, LBS招聘, 社交招聘, 校园招聘, 校招,社会招聘,社招"
+        name="keywords">
+        <script src="__PUBLIC__/HomeStyle/js/analytics.js" async=""></script>
+        <link rel="Shortcut Icon" href="http://www.lagou.com/images/favicon.ico">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/HomeStyle/css/style_002.css">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/HomeStyle/css/style.css">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/HomeStyle/css/external.css">
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/HomeStyle/css/popup.css">
+        <style>
+            input[type="text"], input[type="password"] {
+                margin-top:0px;
+            }
+        </style>
+        <script src="__PUBLIC__/HomeStyle/js/jquery.js" type="text/javascript"></script>
+        <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/jquery_002.js"></script>
+        <script src="__PUBLIC__/HomeStyle/js/ajaxfileupload.js" type="text/javascript"></script>
+        <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/additional-methods.js"></script>
+        <!--[if lte IE 8]>
+            <script type="text/javascript" src="http://www.lagou.com/js/assets/excanvas.js?v=1.5.5.6_1022">
+            </script>
+        <![endif]-->
+    </head>
+    
+    <body>
+        <div id="body">
+            <include file="Public/header" nav="company" />
+            <!-- end #header -->
+            <div id="container">
+                <div class="user_bindSidebar">
+                    <dl class="user_sideBarmenu" id="user_sideBarmenu">
+                        <dt>
+                            <h3>
+                                帐号设置
+                            </h3>
+                        </dt>
+                        <dd>
+                            <a href="{:U('Home/Company/updatePwd')}">
+                                修改密码
+                            </a>
+                        </dd>
+                        <dd>
+                            <a href="{:('Home/Company/updateEmail')}" class="hover">
+                                修改接收简历邮箱
+                            </a>
+                        </dd>
+                    </dl>
+                </div>
+                <input value="1" id="hasSidebar" type="hidden">
+                <div class="content">
+                    <dl class="c_section updateEmailDl">
+                        <dt id="autofiletitle">
+                            <h1>
+                                <em>
+                                </em>
+                                修改接收简历邮箱
+                            </h1>
+                        </dt>
+                        <dd class="upEmailDd">
+                            <form id="upEmailForm">
+                                <div class="upEmail">
+                                    <h3 class="upTip">
+                                        修改完成后，新收到的简历都将发送到新的接收简历邮箱中
+                                    </h3>
+                                    <p class="currentEmail">
+                                        <span class="l">
+                                            当前接收简历邮箱
+                                        </span>
+                                        <span class="r" id="receiveEmailVal">
+                                            {$email}
+                                        </span>
+                                    </p>
+                                    <div class="newEmail">
+                                        <label>
+                                            新接收简历邮箱
+                                        </label>
+                                        <input id="newemail" class="newemail_input" name="newemail" type="text">
+                                        <input id="newemail_sub" name="newemail_sub" class="newemail_sub" value="提交"
+                                        type="submit">
+                                    </div>
+                                </div>
+                            </form>
+                        </dd>
+                    </dl>
+                </div>
+                <div style="display:none;">
+                    <!-- 修改密码 -->
+                    <div id="updatePassword" class="popup" style="overflow:hidden">
+                        <h3>
+                            修改密码成功，请重新登录
+                        </h3>
+                        <h4>
+                            <span>
+                                5
+                            </span>
+                            秒后将自动退出
+                        </h4>
+                        <a href="http://hr.lagou.com/user/logout.html" class="btn">
+                            直接退出
+                        </a>
+                    </div>
+                </div>
+                <script src="__PUBLIC__/HomeStyle/js/setting.js"></script>
+                <script>
+                    (function() {
+                        //校验
+                        $('#upEmailForm').validate({
+                            errorPlacement: function(label, element) {
+                                label.appendTo($(element).parent());
+                                $(".c_section span.error").css("margin", "5px 0 10px 138px");
+                            },
+                            submitHandler: function(form) {
+                                var newEmail = L.trim($("#newemail").val());
+                                var obj = {
+                                    receiveEmail: newEmail
+                                };
+                                L.ajax({
+                                    type: 'POST',
+                                    url: "{:U('Home/Company/doSettingEmail')}",
+                                    data: obj,
+                                    dataType: 'json'
+                                }).done(function(result) {
+                                    if (result.state == "1") {
+                                        window.location.href = "{:U('Home/Company/updateEmail')}";
+                                    } else {
+                                        switch (result.state) {
+                                        case 301:
+                                            alert("邮箱不能为空");
+                                            break;
+                                        case 302:
+                                            alert("邮箱和之前的相同");
+
+                                            break;
+                                        default:
+
+                                        }
+                                    }
+                                });
+                            }
+                        });
+
+                    })();
+                </script>
+                <div class="clear"></div>
+                <input id="resubmitToken" value="" type="hidden">
+                <a id="backtop" title="回到顶部" rel="nofollow">
+                </a>
+            </div>
+            <!-- end #container -->
+        </div>
+        <!-- end #body -->
+        <include file="Public/footer" />
+        <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/core.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/popup.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/tongji.js"></script>
+        <!-- -->
+        <script type="text/javascript" src="__PUBLIC__/HomeStyle/js/analytics_002.js"></script>
+        <script src="__PUBLIC__/HomeStyle/js/h.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(function() {
+                //判断初始化页面时 是否隐藏提示框以及红点的显示
+                if ($(".notice_tip").length == 0) {
+                    $("#noticeTip").hide();
+                    $(".collapsible_menu dt .red").addClass("dn");
+                }
+
+                //$('#noticeDot-1').hide();
+                $('#noticeTip a.closeNT').click(function() {
+                    $(this).parent().hide();
+                    //与后台交互，消息标识为已读
+                    L.ajax({
+                        type: 'POST',
+                        url: ctx + "/notice/clearAll.json",
+                        dataType: 'json'
+                    });
+                    $(".collapsible_menu dt .red").addClass("dn");
+                });
+                //B端消息绑定单击事件
+                $(".notice_tip").bind("click",
+                function() {
+                    $(this).remove();
+                    //获取当前点击的消息类型
+                    var type = $(this).data("type");
+                    //告诉后台哪种类型的消息一经被查看
+                    L.ajax({
+                        type: 'POST',
+                        url: ctx + "/notice/clear.json",
+                        data: {
+                            nt: type
+                        },
+                        dataType: 'json'
+                    });
+                    if ($(".notice_tip").length == 0) {
+                        $("#noticeTip").hide();
+                        $(".collapsible_menu dt .red").addClass("dn");
+                    }
+                });
+            });
+        </script>
+    </body>
+
+</html>
