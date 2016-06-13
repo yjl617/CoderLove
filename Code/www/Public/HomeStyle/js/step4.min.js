@@ -1,0 +1,119 @@
+$(function() {
+	$("#addMember").click(function() {
+		var a = $(".formWrapper").length,
+			b = $("#companyId").val();
+		2 == a && $(this).hide(), $("#productDiv").append('<div class="formWrapper">' + "<h3>产品海报</h3>" + '<div class="new_product mt20">' + '<div class="product_upload" id="productNo' + a + '">' + "<div><span>上传产品图片</span> <br />	尺寸：380*220px  	大小：小于5M</div>" + "</div>" + '<div class="product_upload dn productShow" id="productShow' + a + '">' + '<img src="" width="380" height="220" />' + "<span>更换产品图片<br />380*220px 小于5M</span>" + "</div>" + '<input type="file" id="myfiles' + a + '" name="myfiles" onchange="uploadFile(this);" title="支持jpg、jpeg、gif、png格式，文件小于5M" />' + '<input type="hidden" id="type' + a + '" name="productInfos[' + a + '][image]" value="" /> ' + "</div>" + '<span class="error" id="myfiles' + a + '_error" style="display:none;"></span>' + "<h3>产品名称</h3>" + '<input type="text" id="name' + a + '" name="productInfos[' + a + '][name]" placeholder="请输入产品名称" />' + "<h3>产品地址</h3>" + '<input type="text" id="address' + a + '" name="productInfos[' + a + '][link]" placeholder="请输入产品主页URL或产品下载地址" />' + "<h3>产品简介</h3>" + '<textarea id="description' + a + '" name="productInfos[' + a + '][desc]" maxlength="1000" placeholder="请输入该创始人的个人履历等，建议按照时间倒序分条展示"></textarea>' + '<div class="word_count">你还可以输入 <span>500</span> 字</div>' + "</div>"), $(".formWrapper").each(function(b) {
+			b != a && $(this).css({
+				borderBottom: "1px solid #555",
+				paddingBottom: "20px"
+			})
+		})
+	}), $("#productDiv").on("keyup", "textarea", function() {
+		var a = $(this);
+		a.val().length > 500 ? a.val(a.val().substring(0, 500)) : a.siblings(".word_count").children("span").text(500 - a.val().length)
+	}), $("#productForm").on("mouseenter", ".new_product input", function() {
+		$(".product_upload div").css("backgroundColor", "#7e9597")
+	}), $("#productForm").on("mouseleave", ".new_product input", function() {
+		$(".product_upload div").css("backgroundColor", "#93b7bb")
+	}), $("#productForm").validate({
+		onkeyup: !1,
+		focusCleanup: !0,
+		rules: {
+			"productInfos[0].product": {
+				required: !1,
+				minlength: 2,
+				maxlenStr: 20
+			},
+			"productInfos[0].productUrl": {
+				required: !1,
+				checkUrlNot: !0,
+				maxlength: 120
+			},
+			"productInfos[0].productProfile": {
+				required: !1,
+				specialchar: !0,
+				checkNum: !0,
+				minlength: 10,
+				maxlength: 500
+			},
+			"productInfos[1].product": {
+				required: !1,
+				minlength: 2,
+				maxlenStr: 20
+			},
+			"productInfos[1].productUrl": {
+				required: !1,
+				checkUrlNot: !0,
+				maxlength: 120
+			},
+			"productInfos[1].productProfile": {
+				required: !1,
+				specialchar: !0,
+				checkNum: !0,
+				minlength: 10,
+				maxlength: 500
+			},
+			"productInfos[2].product": {
+				required: !1,
+				minlength: 2,
+				maxlenStr: 20
+			},
+			"productInfos[2].productUrl": {
+				required: !1,
+				checkUrlNot: !0,
+				maxlength: 120
+			},
+			"productInfos[2].productProfile": {
+				required: !1,
+				specialchar: !0,
+				checkNum: !0,
+				minlength: 10,
+				maxlength: 500
+			}
+		},
+		messages: {
+			"productInfos[0].product": {
+				minlength: "请输入有效的产品名称",
+				maxlenStr: "请输入有效的产品名称"
+			},
+			"productInfos[0].productUrl": {
+				checkUrlNot: "请输入有效的产品主页或产品下载地址",
+				maxlength: "请输入120字符以内的网址"
+			},
+			"productInfos[0].productProfile": {
+				specialchar: "请输入有效的产品简介",
+				checkNum: "请输入有效的产品简介",
+				minlength: "请输入10-500字的产品简介",
+				maxlength: "请输入10-500字的产品简介"
+			},
+			"productInfos[1].product": {
+				minlength: "请输入有效的产品名称",
+				maxlenStr: "请输入有效的产品名称"
+			},
+			"productInfos[1].productUrl": {
+				checkUrlNot: "请输入有效的产品主页或产品下载地址",
+				maxlength: "请输入120字符以内的网址"
+			},
+			"productInfos[1].productProfile": {
+				specialchar: "请输入有效的产品简介",
+				checkNum: "请输入有效的产品简介",
+				minlength: "请输入10-500字的产品简介",
+				maxlength: "请输入10-500字的产品简介"
+			},
+			"productInfos[2].product": {
+				minlength: "请输入有效的产品名称",
+				maxlenStr: "请输入有效的产品名称"
+			},
+			"productInfos[2].productUrl": {
+				checkUrlNot: "请输入有效的产品主页或产品下载地址",
+				maxlength: "请输入120字符以内的网址"
+			},
+			"productInfos[2].productProfile": {
+				specialchar: "请输入有效的产品简介",
+				checkNum: "请输入有效的产品简介",
+				minlength: "请输入10-500字的产品简介",
+				maxlength: "请输入10-500字的产品简介"
+			}
+		},
+	})
+});

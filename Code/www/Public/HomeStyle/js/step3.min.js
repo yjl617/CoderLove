@@ -1,0 +1,158 @@
+$(function() {
+	$("#addMember").click(function() {
+		var a = $(".formWrapper").length,
+			b = $("#companyId").val();
+		2 == a && $(this).hide(), $("#memberDiv").append('<div class="formWrapper">' + '<div class="new_portrait">' + '<div id="portraitNo' + a + '" class="portrait_upload">' + "<span>上传创始人头像</span>" + "</div>" + '<div  id="portraitShow' + a + '" class="portraitShow dn">' + '<img src="" width="120" height="120" />' + "<span>更换头像</span>" + "</div>" + '<input type="file" class="myfiles" id="myfiles' + a + '" name="myfiles" onchange="uploadFile(this);" title="支持jpg、jpeg、gif、png格式，文件小于5M" />' + '<input type="hidden" id="type' + a + '" name="leaderInfos[' + a + '][image]" value="7" />' + '<em>  尺寸：120*120px <br />  大小：小于5M</em><span class="error" id="myfiles' + a + '_error" style="display:none;"></span></div>' + "<h3>创始人姓名</h3>" + '<input type="text" class="s_input1" id="name' + a + '" name="leaderInfos[' + a + '][name]" placeholder="请输入创始人姓名" />' + "<h3>当前职位</h3>" + '<input type="text" class="s_input1" id="position' + a + '" name="leaderInfos[' + a + '][position]" placeholder="请输入当前职位，如：创始人兼CEO" />' + "<h3>新浪微博</h3>" + '<input type="text" id="weibo' + a + '" name="leaderInfos[' + a + '][weibo]" placeholder="请输入新浪微博地址" />' + "<h3>创始人简介</h3>" + '<textarea class="s_textarea" id="description' + a + '" name="leaderInfos[' + a + '][desc]" maxlength="1000" placeholder="请输入该创始人的个人履历等，建议按照时间倒序分条展示"></textarea>' + '<div class="word_count">你还可以输入 <span>500</span> 字</div>' + "</div>"), $(".formWrapper").each(function(b) {
+			b != a && $(this).css({
+				borderBottom: "1px solid #555",
+				paddingBottom: "20px"
+			})
+		})
+	}), $("#memberDiv").on("keyup", "textarea", function() {
+		var a = $(this);
+		a.val().length > 500 ? a.val(a.val().substring(0, 500)) : a.siblings(".word_count").children("span").text(500 - a.val().length)
+	}), $("#memberForm").on("mouseenter", ".new_portrait input", function() {
+		$(".portrait_upload").css("backgroundColor", "#7e9597")
+	}), $("#memberForm").on("mouseleave", ".new_portrait input", function() {
+		$(".portrait_upload").css("backgroundColor", "#e7e7e7")
+	}), $("#memberForm").validate({
+		onkeyup: !1,
+		focusCleanup: !0,
+		rules: {
+			"leaderInfos[0].name": {
+				required: !1,
+				specialchar: !0,
+				checkNum: !0,
+				minlength: 2,
+				maxlenStr: 20
+			},
+			"leaderInfos[0].position": {
+				required: !1,
+				specialchar: !0,
+				checkNum: !0,
+				maxlenStr: 60
+			},
+			"leaderInfos[0].weibo": {
+				required: !1,
+				checkUrlNot: !0,
+				maxlength: 120
+			},
+			"leaderInfos[0].remark": {
+				required: !1,
+				checkNum: !0,
+				minlength: 10,
+				maxlength: 500
+			},
+			"leaderInfos[1].name": {
+				required: !1,
+				specialchar: !0,
+				checkNum: !0,
+				minlength: 2,
+				maxlenStr: 20
+			},
+			"leaderInfos[1].position": {
+				required: !1,
+				specialchar: !0,
+				checkNum: !0,
+				maxlenStr: 60
+			},
+			"leaderInfos[1].weibo": {
+				required: !1,
+				checkUrl: !0,
+				maxlength: 120
+			},
+			"leaderInfos[1].remark": {
+				required: !1,
+				checkNum: !0,
+				minlength: 10,
+				maxlength: 500
+			},
+			"leaderInfos[2].name": {
+				required: !1,
+				specialchar: !0,
+				checkNum: !0,
+				minlength: 2,
+				maxlenStr: 20
+			},
+			"leaderInfos[2].position": {
+				required: !1,
+				specialchar: !0,
+				checkNum: !0,
+				maxlenStr: 60
+			},
+			"leaderInfos[2].weibo": {
+				required: !1,
+				checkUrlNot: !0,
+				maxlength: 120
+			},
+			"leaderInfos[2].remark": {
+				required: !1,
+				checkNum: !0,
+				minlength: 10,
+				maxlength: 500
+			}
+		},
+		messages: {
+			"leaderInfos[0].name": {
+				specialchar: "请输入真实的创始人姓名",
+				checkNum: "请输入真实的创始人姓名",
+				minlength: "请输入真实的创始人姓名",
+				maxlenStr: "请输入真实的创始人姓名"
+			},
+			"leaderInfos[0].position": {
+				specialchar: "请输入真实的当前职位",
+				checkNum: "请输入真实的当前职位",
+				maxlenStr: "请输入真实的当前职位"
+			},
+			"leaderInfos[0].weibo": {
+				checkUrlNot: "请输入真实的新浪微博地址",
+				maxlength: "请输入120字符以内的网址"
+			},
+			"leaderInfos[0].remark": {
+				checkNum: "请输入有效的个人简介",
+				minlength: "请输入10-500字的个人简介",
+				maxlength: "请输入10-500字的个人简介"
+			},
+			"leaderInfos[1].name": {
+				specialchar: "请输入真实的创始人姓名",
+				checkNum: "请输入真实的创始人姓名",
+				minlength: "请输入真实的创始人姓名",
+				maxlenStr: "请输入真实的创始人姓名"
+			},
+			"leaderInfos[1].position": {
+				specialchar: "请输入真实的当前职位",
+				checkNum: "请输入真实的当前职位",
+				maxlenStr: "请输入真实的当前职位"
+			},
+			"leaderInfos[1].weibo": {
+				checkUrlNot: "请输入真实的新浪微博地址",
+				maxlength: "请输入120字符以内的网址"
+			},
+			"leaderInfos[1].remark": {
+				checkNum: "请输入有效的个人简介",
+				minlength: "请输入10-500字的个人简介",
+				maxlength: "请输入10-500字的个人简介"
+			},
+			"leaderInfos[2].name": {
+				specialchar: "请输入真实的创始人姓名",
+				checkNum: "请输入真实的创始人姓名",
+				minlength: "请输入真实的创始人姓名",
+				maxlenStr: "请输入真实的创始人姓名"
+			},
+			"leaderInfos[2].position": {
+				specialchar: "请输入真实的当前职位",
+				checkNum: "请输入真实的当前职位",
+				maxlenStr: "请输入真实的当前职位"
+			},
+			"leaderInfos[2].weibo": {
+				checkUrlNot: "请输入真实的新浪微博地址",
+				maxlength: "请输入120字符以内的网址"
+			},
+			"leaderInfos[2].remark": {
+				checkNum: "请输入有效的个人简介",
+				minlength: "请输入10-500字的个人简介",
+				maxlength: "请输入10-500字的个人简介"
+			}
+		},
+	})
+});

@@ -1,0 +1,146 @@
+function getStrLen(a) {
+	var c, d, b = 0;
+	for (c = 0; c < a.length; c++) d = a.charCodeAt(c), b += isDbcCase(d) ? 1 : 2;
+	return b
+}
+function isDbcCase(a) {
+	return a >= 32 && 127 >= a ? !0 : a >= 65377 && 65439 >= a ? !0 : !1
+}
+$(function() {
+	function a() {
+		var a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s;
+		$("#jobForm").valid() && ($("#department").val() == $("#department").attr("placeholder") && $("#department").val(""), 
+		("" == $("#salaryMin").val() || $("#salaryMin").val() == $("#salaryMin").attr("placeholder")) && $("#salaryMin").val(""), 
+		("" == $("#salaryMax").val() || $("#salaryMax").val() == $("#salaryMax").attr("placeholder")) && $("#salaryMax").val(""), 
+		$("#positionAddress").val() == $("#positionAddress").attr("placeholder") && $("#positionAddress").val(""), 
+		a = $("#positionType").val(), 
+		b = $("#positionName").val(), 
+		c = $("#department").val(), 
+		d = $('#jobForm input[name="jobNature"]:checked').val(), 
+		e = $("#salaryMin").val(), 
+		f = $("#salaryMax").val(), 
+		g = $("#workAddress").val(), 
+		h = $("#experience").val(), 
+		i = $("#education").val(), 
+		j = $("#positionAdvantage").val(), 
+		k = $("#positionDetail").val(), 
+		l = $("#positionAddress").val(), 
+		m = $("#lng").val(), 
+		n = $("#lat").val(), 
+		o = $("#receiveEmail").val(), 
+		p = $("#forwardEmail").val(), 
+		q = $('#jobForm input[name="id"]').val(), 
+		r = $('#jobForm input[name="companyId"]').val(), 
+		s = $("#resubmitToken").val()
+		)
+	}
+	$("#telForm").validate({
+		rules: {
+			tel: {
+				required: !0,
+				isTel: !0
+			}
+		},
+		messages: {
+			tel: {
+				required: "请输入你的手机号码或座机号码",
+				isTel: "请输入正确的手机号或座机号，座机格式如010-62555255或010-6255255-分机号，多个电话用英文逗号隔开"
+			}
+		},
+	}), $('#telTip input[type="text"]').focus(function() {
+		$("#telError").hide()
+	}), $(".profile_radio li input").click(function() {
+		$(this).parent("li").siblings("li").removeClass("current"), $(this).parent("li").addClass("current"), $("#jobForm").validate().element($(this))
+	}), $("#salaryMin").focus(function() {
+		"" == $.trim($(this).val()) && $(this).prev().text("最低月薪").css({
+			color: "#dddee0"
+		})
+	}).blur(function() {
+		"" == $.trim($(this).val()) && $(this).prev().text("最低月薪").css({
+			color: "#777"
+		})
+	}).keyup(function() {
+		$(this).prev().text("")
+	}), $("#salaryMax").focus(function() {
+		"" == $.trim($(this).val()) && $(this).prev().text("最高月薪").css({
+			color: "#dddee0"
+		})
+	}).blur(function() {
+		"" == $.trim($(this).val()) && $(this).prev().text("最高月薪").css({
+			color: "#777"
+		})
+	}).keyup(function() {
+		$(this).prev().text("")
+	}), $(document).click(function() {
+		$("#box_job").hide(), $(".boxUpDown").hide(), $(".selectr").removeClass("selectrFocus")
+	}), $("#box_job").bind("click", function(a) {
+		a.stopPropagation()
+	}), $("#box_job").on("mouseenter", ".job_main li", function() {
+		$(this).children("ul").show();
+		var a = "";
+		$("#box_job .job_main").each(function() {
+			$(this).children("li").each(function() {
+				a = $("#box_job").height() - ($(this).offset().top - $(this).parents("#box_job").offset().top + 32), a < $(this).children(".job_sub").height() && (navigator.userAgent.indexOf("MSIE") > 0 && "7." == navigator.appVersion.match(/7./i) ? $(this).children(".job_sub").css({
+					marginTop: "-30" - $(this).children(".job_sub").height() + "px"
+				}) : $(this).children(".job_sub").css({
+					marginTop: "-44" - $(this).children(".job_sub").height() + "px"
+				}))
+			})
+		})
+	}), $("#box_job").on("mouseleave", ".job_main li", function() {
+		$(this).children("ul").hide()
+	}), $("#select_category").bind("click", function(a) {
+		a.stopPropagation(), $(".boxUpDown").hide(), $(".selectr").removeClass("selectrFocus"), $(this).addClass("selectrFocus"), $("#box_job").show()
+	}), $("#box_job").on("click", ".job_sub li", function(a) {
+		var b, c;
+		a.stopPropagation(), b = $(this).parent("ul.job_sub").siblings("span").text(), c = $(this).text(), $("#select_category").css("color", "#333").val(b).removeClass("selectrFocus"), $("#positionType").val(b), $("#positionName").val(c), $(this).parents(".job_sub").hide(), $("#box_job").hide(), $("#jobForm").validate().element("#positionType"), $("#jobForm").validate().element("#positionName")
+	}), $("#box_job").on("click", "ul.job_main > li", function(a) {
+		a.stopPropagation();
+		var b = $(this).children("span").text();
+		$("#select_category").css("color", "#333").val(b).removeClass("selectrFocus"), $("#positionType").val(b), $("#positionName").val(""), $("#box_job").hide(), placeholderFn(), $("#jobForm").validate().element("#positionType")
+	}), $("#box_job .job_main").each(function() {
+		$(this).children("li").each(function(a) {
+			1 == a % 3 ? $(this).children(".job_sub").css({
+				marginLeft: "-160px"
+			}) : 2 == a % 3 && $(this).children(".job_sub").css({
+				marginLeft: "-310px"
+			})
+		})
+	}), $("#select_experience").bind("click", function(a) {
+		a.stopPropagation(), $(".selectr").removeClass("selectrFocus"), $("#box_job").hide(), $(".boxUpDown").hide(), $(this).addClass("selectrFocus"), $(this).siblings(".boxUpDown").show()
+	}), $("#box_experience").on("click", "ul li", function(a) {
+		a.stopPropagation();
+		var b = $.trim($(this).text());
+		$(this).parents("#box_experience").hide().siblings("#select_experience").val(b).css("color", "#333").removeClass("selectrFocus"), $(this).parents("#box_experience").hide().siblings("#experience").val(b)
+	}), $("#select_education").bind("click", function(a) {
+		a.stopPropagation(), $(".selectr").removeClass("selectrFocus"), $("#box_job").hide(), $(".boxUpDown").hide(), $(this).addClass("selectrFocus"), $(this).siblings(".boxUpDown").show()
+	}), $("#box_education").on("click", "ul li", function(a) {
+		a.stopPropagation();
+		var b = $.trim($(this).text());
+		$(this).parents("#box_education").hide().siblings("#select_education").val(b).css("color", "#333").removeClass("selectrFocus"), $(this).parents("#box_education").hide().siblings("#education").val(b), $("#jobForm").validate().element($("#education"))
+	}), jQuery.validator.addMethod("hasEmail", function(a) {
+		return a.indexOf("@") > 0 && (a.indexOf(".com") > 0 || a.indexOf(".cn") > 0) && (a.indexOf(".com") - a.indexOf("@") < 15 && a.indexOf(".com") - a.indexOf("@") > 0 || a.indexOf(".cn") - a.indexOf("@") < 15 && a.indexOf(".cn") - a.indexOf("@") > 0) ? !1 : !0
+	}, "职位描述不能包含邮箱，请去掉"), $.validator.addMethod("textInMce", function() {
+		var c = tinyMCE.get("positionDetail").getContent().replace(/<.*?>/g, ""),
+			d = getStrLen(c);
+		return d >= 40 && 4e3 >= d ? !0 : !1
+	}, "请输入20-2000字的职位描述"), $.validator.classRuleSettings.textInMce = {
+		textInMce: !0
+	}, $("#workAddress").focus(function() {
+		$("#beError").hide()
+	}), jQuery.validator.addMethod("forwardEmailFormat", function(a) {
+		var d = $.trim(a).indexOf("@"),
+			e = $.trim(a).substring(d, $.trim(a).length),
+			f = $.trim($("#receiveEmailVal").text()),
+			g = f.indexOf("@"),
+			h = f.substring(g, f.length);
+		return "" != $.trim(a) && e != h ? !1 : !0
+	}, "请输入与当前接收简历邮箱后缀一致的邮箱地址"), jQuery.validator.addMethod("forwardSame", function(a) {
+		var d = $.trim(a),
+			e = $.trim($("#receiveEmailVal").text());
+		return "" != d && d == e ? !1 : !0
+	}, "请输入与当前接收简历邮箱不同的邮箱地址"), 
+	 $("#forwardEmail").focus(function() {
+		$(".error").siblings("span").hide()
+	})
+});

@@ -1,0 +1,141 @@
+@charset "utf-8";.popup{font:14px/22px "Microsoft YaHei","微软雅黑","宋体",Arail;color:#555;padding:30px;width:442px;overflow:hidden}.popup h4{font-size:24px;font-weight:normal;text-align:center;margin:0 0 25px}.popup p{margin:0 0 25px}.popup p.mid{text-align:center}.popup a{color:#019875;text-decoration:none}.popup .color_green{color:#019875}.popup .font_18{font-size:18px}.popup .font_16{font-size:16px}.popup .btn_s,.popup .btn{font-size:20px;background:#019875;padding:0 25px;text-decoration:none;display:inline-block;text-align:center;height:37px;color:#fff;border:0;line-height:37px;transition:background 0.2s ease-in 0s;}.popup .btn_s:hover,.popup .btn:hover{background:#00694e}.popup .enter_msg{width:280px;margin:0 auto;overflow:hidden;font-size:18px}.popup .reset_password{color:#555;font-size:16px;margin-left:25px;line-height:37px}.popup .error_msg{background:url(../images/lb_error.png) 0 5px no-repeat;padding-left:45px;width:380px;margin:0 auto 25px;text-align:left;min-height:29px;line-height:36px}.popup .btn_addPic{display:inline-block;position:relative;padding:0 12px;height:37px;overflow:hidden;background:#019875;color:#fff;font-size:20px;margin-bottom:25px;text-align:center;cursor:pointer}.popup .btn_addPic_hover{background:#00694e;}.popup .btn_addPic span{display:block;line-height:37px;}.popup .filePrew{display:block;position:absolute;top:0;left:0;width:145px;height:37px;font-size:100px;opacity:0;filter:alpha(opacity=0);cursor:pointer}#loginPop{width:540px}#loginPop div.form_bg{background:#f3f3f3}.popup input[type="text"],.popup input[type="password"]{background:#f3f3f3}#deliverResumesSuccess i,.error_msg i{color:#ff6a6a;font-style:normal}#telTip input[type="text"]{width:360px;font-size:16px;color:#777;}#telTip input[type="text"]:focus{border:2px solid #fff;-webkit-box-shadow: 0px 0px 4px #b5f0e7;-moz-box-shadow: 0px 0px 4px #b5f0e7;box-shadow: 0px 0px 4px #b5f0e7;}#telTip .btn{margin:15px 0px 0 0;}#telTip .btn_s{margin:15px 0 0 0;background:none;color:#333;}#telTip span.error{width:370px;margin:3px 0 -10px 20px;text-align:left;}#sendNoResume form{float:left; margin:20px 0px 0 50px;}#sendNoResume .btn{ margin:20px 0 0 0;}
+#bindTips h3,#bindReplace h3{
+	font-size:24px;
+	margin:0 0 20px;
+	line-height:34px;
+}
+#bindTips .user_canOperatioin{
+	font-size:18px;
+	color:#f63f27;
+	margin: 10px 0px 20px;
+	padding:0;
+	list-style:none;
+}
+#bindTips .user_canOperatioin li{
+	line-height:30px;
+	list-style:none;
+}
+#bindTips .cancel,#bindReplace .cancel{
+	font-size:20px;
+	color:#a3a3a3;
+	padding:0 20px;
+	margin-left:20px;
+}
+.red_18{
+	font-size:18px;
+	line-height:24px;
+	color:#f63f27;
+}
+.red_20{
+	font-size:20px;
+	line-height:26px;
+	color:#f63f27;
+}
+#bindReplace .border_btm{
+	border-bottom:1px dashed #d6d6d6;
+	padding-bottom:25px;
+}
+#bindReplace .border_btm{
+	border-bottom:1px dashed #d6d6d6;
+	padding-bottom:25px;
+}
+#bindReplace .chooseAccount{
+	/* padding:25px; */
+	padding:20px 0 10px 0;
+}
+#bindReplace .chooseAccount label{
+	cursor:pointer;
+	display:block;
+	margin-top:10px;
+	overflow:hidden;
+}
+#bindReplace .chooseAccount label .f16{
+	line-height:24px;
+}
+#bindReplace .chooseAccount em{
+	float:left;
+	height:17px;
+	width:17px;
+	background: url(../images/user/radio.png) no-repeat;
+	margin:4px 10px 0 0;
+}
+#bindReplace .chooseAccount label.current em{
+	background: url(../images/user/radioSel.png) no-repeat;
+}
+#bindReplace .chooseAccount .acc_detail{
+	color:#777;
+	margin-left:28px;
+}
+#bindReplace .acc_detail span{
+	display:inline-block;
+	width:190px;
+}
+#bindReplace .chooseAccount i{ font-style:normal;}
+/*帐号绑定确认*/
+.user_bindSuccecc{font-size:20px;color:#555;padding-top:0px;line-height:30px; }
+.user_bindSuccecc span{ color:#019875}
+.user_confirmBind{font-size:20px;color:#f63f27;padding-top:28px;}
+.user_bindBtn{width: 100%; margin-top:10px;}
+.user_bindBtn a{margin-top:15px;display:inline-block;width:105px; height:37px; text-align: center;line-height: 37px; font-size:20px;color:#a3a3a3}
+.user_bindBtn a.click{background:#019875;color:#fff;}
+.user_noRecoverInfos{ margin-top:20px; background:#fafafa;border:1px dashed #e9e9e9;font-size:18px;height:40px;}
+.noRecoverInfosTitle{ color:#6b6b6b;}
+.noRecoverInfosContent{ color:#f63f27; font-weight:bold;;line-height:40px;text-align:center;}
+
+
+/*确认取消绑定*/
+.user_confirmUnbind{ font-size: 24px; color: #555}
+.user_confirmNo{ font-size: 20px; color: #f63f27; padding-top: 26px;}
+
+/*修改密码成功 vee*/
+#updatePassword{text-align:center;}
+#updatePassword h3{font-size:22px;color:#555555;margin:0 0 20px 0;}
+#updatePassword h4{font-size:16px;color:#555555;margin:0 0 10px 0;}
+/*解除招聘服务 vee*/
+#unbindService{text-align:center;}
+#unbindService h3{font-size:22px;color:#555555;margin:0 0 20px 0;}
+#unbindService h4{font-size:16px;color:#555555;margin:0 0 10px 0;}
+/*二次确认解除招聘服务*/
+#confirm_unbindService h3{ font-size:24px; color:#555;margin:0 0 20px 0;}
+#confirm_unbindService h4{ font-size:18px; color:#f63f27;margin:0 0 20px 0;line-height:30px; text-align:left}
+#confirm_unbindService .confirm_unbindSeerviceBtn{ text-align:center;}
+#confirm_unbindService .confirm_unbindSeerviceBtn .cancel{font-size:20px;
+	color:#a3a3a3;
+	padding:0 20px;
+	margin-left:20px;}
+
+/*举报弹窗*/
+.report_detail{width:100%;height:330px;margin:0 auto;}
+.report_detail h2{color:#333333;font-size:18px;font-weight:normal;margin:0px 0px 15px;line-height:28px;}
+#reportbox #report_submit{width:100%;}
+#report_submit table{width:100%;height:100%;}
+#report_submit table tr td:first-child{vertical-align: top;padding-top: 8px;font-size:16px;color:#333333;}
+td.select_box,td.report_last{position:relative;clear:both;}
+#report_submit table tr td a.report_select{position:absolute;top:1px;right:0px;display:block;width:55px;height:39px;border-left: 2px solid #f1f1f1;}
+#report_submit table tr td input[type="button"]{width:352px;*width:345px;height: 39px;color:#A9A9A9;font-size: 16px;background: #fff;margin: 0px 0px 10px 0px;padding-left:10px;text-align:left;border: 2px solid #f1f1f1;outline:none;cursor:pointer;}
+#report_submit table tr td textarea{width:328px;*width:321px;height: 160px;overflow:auto;color:#333333;line-height: 24px;font-size: 16px;background: #fff;margin: 0;padding: 6px 10px;border: 2px solid #f1f1f1;outline:none;}
+#report_submit table tr td a.report_select em{height: 0;width: 0;overflow: hidden;font-size: 0;line-height: 0;border-width: 8px 7px 0;border-style: solid dashed;border-color: #999999 transparent transparent;position:absolute;left:25%;top:40%;}
+.report_last label.checkbox{margin-right:6px;margin-top:0px;width: 10px;height: 10px;border: 2px solid #e0e0e0;background: #fff;}
+.report_last label.checkbox:hover{border:2px solid #91cebe;}
+.report_last label.checkbox input[type="checkbox"]{width: 17px;height: 17px;margin: 0;border: 0;position: absolute;left: -2px;top: -2px;filter: alpha(opacity=0);-moz-opacity: 0;opacity: 0;}
+.report_last label.checkbox i{display:block;background: url(../images/report_select.png) 0 0 no-repeat;width: 17px;height: 14px;position: absolute;left: 0px;top: -5px;}
+.report_last span{display:block;height:100%;line-height:14px;color:#999999;font-size:14px;}
+.report_last span.report_txt{position:absolute;right:4px;top:0px;}
+.report_last span.report_txt b{color:#ff7575;font-weight:normal;}
+.sure_submit{float:right;color: #fff;margin:0px;*margin:5px 5px 0px 0px;line-height: 37px;font-size: 20px;background: #019875;padding: 0 20px;*padding:0 10px;display: inline-block;text-align: center;height: 37px;transition: background-color 0.4s ease-out;}
+.sure_submit:hover{background:#00694E;}
+.reason_content{display:none;position:absolute;left:1px;top:38px;width:348px;*width:341px;border: 2px solid #91cebe;z-index:10;background: #fff;}
+.reason_content ul{list-style: none;margin: 0;padding:0;}
+.reason_content ul li{font-size: 14px;padding: 5px 10px;cursor: pointer;line-height: 22px;}
+.reason_content ul li:hover{background:#91CEBE;color:#ffffff;}
+.select_box .error{margin:-8px 0px 5px 0px}
+#problem_txt+span.error{margin:-3px 0px 5px 0px;}
+.anonymous_submit{width:77px;cursor:default;}
+
+/*举报提交后的弹窗*/
+#receive_report,#has_report{position:relative;}
+#receive_report h2,#has_report h2{color:#333333;font-size:18px;line-height:30px;}
+#has_report h2{text-align:center;}
+#receive_report a,#has_report a{position:absolute;left:50%;bottom:40px;margin-left:-40px;""display:block;color: #fff;line-height: 37px;font-size: 20px;background: #019875;padding: 0 25px;text-align: center;height: 37px;transition: background-color 0.4s ease-out;}
+#receive_report a:hover,#has_report a:hover{background:#00694E;}
+
